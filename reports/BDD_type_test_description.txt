@@ -12,6 +12,15 @@ List of initial test suite in human readable form:
 
 
 3.Credit Card Minimum Payment Calculator - Determine how long it will take to pay off credit cards if only the minimum payment is made.INPUT: CC balance, CC interest rate, minimum payment percentage OUTPUT: monthly payment, # of months to payoff balance, and total $ amount paid (calculate interest on the initial balance)
+  - should reject any negative input
+  - should reject an empty input
+  - should reject a CC balance that is not a float
+  - should reject a CC interest rate that is not a float
+  - should reject a minimum payment percentage that is not a float
+  - should reject a minimum payment percentage that is > 100
+  - should reject any negative output
+  - should have all outputs be rounded to 2 decimal places other than # of months to payoff balance which should be an integer
+  - should output the appropriately calculated monthly payment, # of months to payoff balance, and total $ amount paid
 
 
 4.Mortgage Calculator - Determine the monthly mortgage payment. INPUT: home price, down payment as a percentage (e.g., 15.5%), length of loan in years (whole number), interest rate OUTPUT: monthly payment, amount paid in interest, amount paid in principle, total amount paid (calculate interest on the initial home price)
