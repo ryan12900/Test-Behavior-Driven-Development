@@ -15,7 +15,20 @@ List of initial test suite in human readable form:
 
 
 4.Mortgage Calculator - Determine the monthly mortgage payment. INPUT: home price, down payment as a percentage (e.g., 15.5%), length of loan in years (whole number), interest rate OUTPUT: monthly payment, amount paid in interest, amount paid in principle, total amount paid (calculate interest on the initial home price)
+  - should reject any negative input
+  - should reject any home price that is not a float
+  - should reject any down payment that is not a float
+  - should reject any down payment that is > 100
+  - should reject any loan time length that is not an integer
+  - should reject any interest rate that is not a float
 
+  - should reject any negative output
+  - should reject any monthly payment that is not a float
+  - should reject any amount paid in interest that is not a float
+  - should reject any amount paid in principle that is not a float
+  - should reject any total amount paid that is not a float
+  - should output all outputs rounded to 2 decimal places
+  - should output accurate calculations 
 
 5.CD Calculator - Determine how much interest is earned on a certificate of deposit (CD). INPUT: initial deposit, period in year (e.g., 2.5 years), simple interest rate calculated yearly (APY) OUTPUT: total balance, total interest earned
     - should not accept any negative inputs
