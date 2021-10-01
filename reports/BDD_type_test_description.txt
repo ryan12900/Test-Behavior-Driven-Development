@@ -1,1 +1,20 @@
-List of all tests that implementation will pass:
+List of initial test suite in human readable form:
+
+1.Credit Card Payoff - Determine the monthly payment required to accomplish the desired payoff time frame in months. INPUT: CC balance, CC interest rate, desired months to payoff OUTPUT: monthly payment, total principle paid, total interest paid (calculate interest on the initial balance). 
+  - 
+
+2.Simple Savings Calculator - Determine total savings growth over time if a simple APY is applied yearly. INPUT: initial deposit, monthly contribution, period in years (e.g., 2.5 years), simple interest rate calculated yearly (APY) OUTPUT: savings total, total contributions, interest earned 
+  - should reject any empty input
+  - should output savings total, total contribution, and interest earned, in floating point form with 2 decimal places
+  - should correctly output savings total, total contributions, and interest accumulated based on real calculations
+  - should reject input not in a numerical form 
+  - should only accept interest rates in float/decimal form
+
+
+3.Credit Card Minimum Payment Calculator - Determine how long it will take to pay off credit cards if only the minimum payment is made.INPUT: CC balance, CC interest rate, minimum payment percentage OUTPUT: monthly payment, # of months to payoff balance, and total $ amount paid (calculate interest on the initial balance)
+
+
+4.Mortgage Calculator - Determine the monthly mortgage payment. INPUT: home price, down payment as a percentage (e.g., 15.5%), length of loan in years (whole number), interest rate OUTPUT: monthly payment, amount paid in interest, amount paid in principle, total amount paid (calculate interest on the initial home price)
+
+
+5.CD Calculator - Determine how much interest is earned on a certificate of deposit (CD). INPUT: initial deposit, period in year (e.g., 2.5 years), simple interest rate calculated yearly (APY) OUTPUT: total balance, total interest earned
