@@ -1,7 +1,11 @@
 List of initial test suite in human readable form:
 
 1.Credit Card Payoff - Determine the monthly payment required to accomplish the desired payoff time frame in months. INPUT: CC balance, CC interest rate, desired months to payoff OUTPUT: monthly payment, total principle paid, total interest paid (calculate interest on the initial balance). 
-  - 
+  - should reject any negative input
+  - should reject any non-numerical input
+  - should output floating-point monthly payment/principle paid/interest paid rounded to 2 decimal points
+  - should report accurate monthly payment/principle paid/interest paid
+  - should require all 3 inputs to make any output
 
 2.Simple Savings Calculator - Determine total savings growth over time if a simple APY is applied yearly. INPUT: initial deposit, monthly contribution, period in years (e.g., 2.5 years), simple interest rate calculated yearly (APY) OUTPUT: savings total, total contributions, interest earned 
   - should reject any empty input
