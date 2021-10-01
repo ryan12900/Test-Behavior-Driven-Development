@@ -9,6 +9,7 @@ List of initial test suite in human readable form:
 
 2.Simple Savings Calculator - Determine total savings growth over time if a simple APY is applied yearly. INPUT: initial deposit, monthly contribution, period in years (e.g., 2.5 years), simple interest rate calculated yearly (APY) OUTPUT: savings total, total contributions, interest earned 
   - should reject any empty input
+  - should reject any negative input
   - should output savings total, total contribution, and interest earned, in floating point form with 2 decimal places
   - should correctly output savings total, total contributions, and interest accumulated based on real calculations
   - should reject input not in a numerical form 
