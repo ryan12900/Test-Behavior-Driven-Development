@@ -18,3 +18,8 @@ List of initial test suite in human readable form:
 
 
 5.CD Calculator - Determine how much interest is earned on a certificate of deposit (CD). INPUT: initial deposit, period in year (e.g., 2.5 years), simple interest rate calculated yearly (APY) OUTPUT: total balance, total interest earned
+    - should not accept any negative inputs
+    - should not accept empty inputs
+    - should not accept non-numerical inputs
+    - should not accept any missing inputs: initial deposit, period in years, simple interest rate
+    - should output the correct values with two decimal points for both total balance and total interest earned
