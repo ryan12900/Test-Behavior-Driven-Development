@@ -21,6 +21,7 @@ List of initial test suite in human readable form:
   - should reject any down payment that is > 100
   - should reject any loan time length that is not an integer
   - should reject any interest rate that is not a float
+  - should reject any empty inputs
 
   - should reject any negative output
   - should reject any monthly payment that is not a float
