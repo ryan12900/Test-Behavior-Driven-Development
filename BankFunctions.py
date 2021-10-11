@@ -5,20 +5,20 @@ def ccPayoff():
 
 def simpleSavingsCalc(initialDeposit, monthlyContrib, timePeriod, interestRate):
     try:
-        math.isnan(initialDeposit)
-    except TypeError:
+        initialDeposit = float(initialDeposit)
+    except ValueError:
         return "Initial deposit value must be numeric."
     try:
-        math.isnan(monthlyContrib)
-    except TypeError:
+        monthlyContrib = float(monthlyContrib)
+    except ValueError:
         return "Monthly contribution value must be numeric."
     try:
-        math.isnan(timePeriod)
-    except TypeError:
+        timePeriod = float(timePeriod)
+    except ValueError:
         return "Time period must be numeric, and in year form. e.g: 2.5 (years)"
     try:
-        math.isnan(interestRate)
-    except TypeError:
+       interestRate = float(interestRate)
+    except ValueError:
         return "Interest rate value must be numeric."
     if initialDeposit < 0:
         return "Initial deposit cannot be negative."
@@ -57,16 +57,16 @@ def simpleSavingsCalc(initialDeposit, monthlyContrib, timePeriod, interestRate):
 
 def ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent):
     try:
-        math.isnan(ccBalance)
-    except TypeError:
+        ccBalance = float(ccBalance)
+    except ValueError:
         return "CC balance input value must be numeric."
     try: 
-        math.isnan(ccInterestRate)
-    except TypeError:
+        ccInterestRate = float(ccInterestRate)
+    except ValueError:
         return "CC interest rate input value must be numeric."
     try:
-        math.isnan(minPaymentPercent)
-    except TypeError:
+        minPaymentPercent = float(minPaymentPercent)
+    except ValueError:
         return "Minimum payment percent input value must be numeric."
     if ccBalance < 0:
         return "CC balance cannot be negative."
@@ -85,7 +85,7 @@ def ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent):
         interestAmnt = round(currentBalance * (ccInterestRate/100.00/12),2)
         if currentPayment < 15:
             currentPayment = 15
-        
+
         currentBalance -= currentPayment
         currentBalance += interestAmnt
         totalPayment += interestAmnt
@@ -111,16 +111,16 @@ def main():
         if option == 1:
             ccPayoff()
         elif option == 2:
-            initialDeposit = float(input("Please enter the initial deposit amount (eg. 1000.0): "))
-            monthlyContrib = float(input("Please enter the desired monthly contribution amount (e.g 100.0): "))
-            timePeriod = float(input("Please enter a numerical time period in years (e.g 2.5 ): "))
-            interestRate = float(input("Please enter an interest rate as a percentage (e.g 10.52): "))
+            initialDeposit = input("Please enter the initial deposit amount (eg. 1000.0): ")
+            monthlyContrib = input("Please enter the desired monthly contribution amount (e.g 100.0): ")
+            timePeriod = input("Please enter a numerical time period in years (e.g 2.5 ): ")
+            interestRate = input("Please enter an interest rate as a percentage (e.g 10.52): ")
             result = simpleSavingsCalc(initialDeposit,monthlyContrib, timePeriod, interestRate)
             print(result)
         elif option == 3:
-            ccBalance = float(input("Please enter the CC balance (eg. 1234.56): "))
-            ccInterestRate = float(input("Please enter the CC interest rate (eg. 12.3): "))
-            minPaymentPercent = float(input("Please enter the minimum payment percentage (eg 12.3): "))
+            ccBalance =input("Please enter the CC balance (eg. 1234.56): ")
+            ccInterestRate = input("Please enter the CC interest rate (eg. 12.3): ")
+            minPaymentPercent = input("Please enter the minimum payment percentage (eg 12.3): ")
             result = ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent)
             print(result)
         elif option == 4:
