@@ -1,12 +1,12 @@
 [
-  "ccMinPaymentCalc_pytest.py::test_negative_ccBalance", 
-  "ccMinPaymentCalc_pytest.py::test_negative_ccInterestRate", 
-  "ccMinPaymentCalc_pytest.py::test_negative_minPaymentPercent", 
-  "ccMinPaymentCalc_pytest.py::test_NaN_ccBalance", 
-  "ccMinPaymentCalc_pytest.py::test_NaN_ccInterestRate", 
-  "ccMinPaymentCalc_pytest.py::test_NaN_minPaymentPercent", 
-  "ccMinPaymentCalc_pytest.py::test_invalid_minPaymentPercent", 
-  "ccMinPaymentCalc_pytest.py::test_integer_calculation1", 
-  "ccMinPaymentCalc_pytest.py::test_integer_calculation2", 
-  "ccMinPaymentCalc_pytest.py::test_integer_calculation3"
+  "ccMinPaymentCalc_pytest.py::test_NaN_ccBalance",
+  "ccMinPaymentCalc_pytest.py::test_NaN_ccInterestRate",
+  "ccMinPaymentCalc_pytest.py::test_NaN_minPaymentPercent",
+  "ccMinPaymentCalc_pytest.py::test_integer_calculation1",
+  "ccMinPaymentCalc_pytest.py::test_integer_calculation2",
+  "ccMinPaymentCalc_pytest.py::test_integer_calculation3",
+  "ccMinPaymentCalc_pytest.py::test_invalid_minPaymentPercent",
+  "ccMinPaymentCalc_pytest.py::test_negative_ccBalance",
+  "ccMinPaymentCalc_pytest.py::test_negative_ccInterestRate",
+  "ccMinPaymentCalc_pytest.py::test_negative_minPaymentPercent"
 ]

@@ -49,7 +49,7 @@ def ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent):
     d['Total Payment'] = totalPayment
     return d
 
-def mortageCalc():
+def mortgageCalc():
     return 0
 
 def cdCalc():
@@ -58,15 +58,15 @@ def cdCalc():
 
 def main():
     while(1):
-        option = input("Please select a bank function to execute:\n1. Credit Card Payoff\n2. Simple Savings Calculator\n3. Credit Card Minimum Payment Calculator\n4. Mortgage Calculator\n5. CD Calculator\n6. Exit\n")
+        option = int(input("Please select a bank function to execute:\n1. Credit Card Payoff\n2. Simple Savings Calculator\n3. Credit Card Minimum Payment Calculator\n4. Mortgage Calculator\n5. CD Calculator\n6. Exit\n"))
         if option == 1:
             ccPayoff()
         elif option == 2:
             simpleSavingsCalc()
         elif option == 3:
-            ccBalance = input("Please enter the CC balance (eg. 1234.56): ")
-            ccInterestRate = input("Please enter the CC interest rate (eg. 12.3): ")
-            minPaymentPercent = input("Please enter the minimum payment percentage (eg 12.3): ")
+            ccBalance = float(input("Please enter the CC balance (eg. 1234.56): "))
+            ccInterestRate = float(input("Please enter the CC interest rate (eg. 12.3): "))
+            minPaymentPercent = float(input("Please enter the minimum payment percentage (eg 12.3): "))
             result = ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent)
             print(result)
         elif option == 4:
