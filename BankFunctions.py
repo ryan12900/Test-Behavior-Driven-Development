@@ -31,9 +31,9 @@ def simpleSavingsCalc(initialDeposit, monthlyContrib, timePeriod, interestRate):
 
     months = math.floor(timePeriod * 12)
     count = 0
-    totalBalance = initialDeposit
-    interest = interestRate / 100
-    accumInterest = 0
+    totalBalance = initialDeposit + 0.0
+    interest = interestRate / 100.0
+    accumInterest = 0.0
 
     while (count <= months):
         totalBalance += monthlyContrib
@@ -46,7 +46,7 @@ def simpleSavingsCalc(initialDeposit, monthlyContrib, timePeriod, interestRate):
         
     
     totalBalance = round(totalBalance, 2)
-    totalContrib = monthlyContrib * months
+    totalContrib = round((monthlyContrib * months),2)
     d = dict()
 
     d['Total Savings balance'] = totalBalance
