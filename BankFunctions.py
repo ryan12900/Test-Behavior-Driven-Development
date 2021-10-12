@@ -162,7 +162,6 @@ def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
     except(ValueError):
         return("Interest rate must be a float")
 
-    
     if home_price < 0:
         return "Home price should not be negative"
     if down_payment < 0:
@@ -187,8 +186,35 @@ def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
 
     return d
 
-def cd_calc():
-    return 0
+def cdCalc(initDeposit, yearPeriod, interestRate):
+    try:
+        math.isnan(initDeposit)
+    except TypeError:
+        return "Initial deposit input value must be numeric."
+    try: 
+        math.isnan(yearPeriod)
+    except TypeError:
+        return "Period in years input value must be numeric."
+    try:
+        math.isnan(interestRate)
+    except TypeError:
+        return "Interest rate input value must be numeric."
+    if initDeposit < 0:
+        return "Initial deposit cannot be negative."
+    if yearPeriod < 0:
+        return "Period in years cannot be negative."
+    if interestRate < 0:
+        return "Interest rate cannot be negative."
+
+    totBalance = initDeposit
+    totInterest = 0
+    months = math.floor(yearPeriod*12)
+    totBalance = round(initDeposit*((1+(0.01*interestRate)) ** (months/12)),2)
+    totInterest= round(totBalance - initDeposit,2)
+    d = dict()
+    d['Total Balance'] = totBalance
+    d['Total Interest'] = totInterest
+    return d
 
 
 def main():
@@ -214,7 +240,6 @@ def main():
             result = cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
             print(result)
         elif option == 4:
-
             home_price = input("Enter the home price")
             down_payment = input("Enter the down payment as a percentage")
             loan_length = input("Enter the loan length in years")
@@ -222,7 +247,11 @@ def main():
             result = mortgage_calc(home_price, down_payment, loan_length, interest_rate)
             print(result)
         elif option == 5:
-            cd_calc()
+            initDeposit = float(input("Please enter the initial deposit amount (eg. 1000.50): "))
+            yearPeriod = float(input("Please enter the period in years(eg. 2.5): "))
+            interestRate = float(input("Please enter the interest rate calculated yearly (eg. 10.5): "))
+            result = cdCalc(initDeposit,yearPeriod,interestRate)
+            print(result)
         elif option == 6:
             print("Quitting program.")
             break
