@@ -20,5 +20,17 @@
   "mortgageCalc_pytest.py::test_negative_down_payment",
   "mortgageCalc_pytest.py::test_negative_home_price",
   "mortgageCalc_pytest.py::test_negative_interest_rate",
-  "mortgageCalc_pytest.py::test_negative_loan_length"
+  "mortgageCalc_pytest.py::test_negative_loan_length",
+  "simpleSavingsCalc_pytest.py::test_calculation1",
+  "simpleSavingsCalc_pytest.py::test_calculation2",
+  "simpleSavingsCalc_pytest.py::test_calculation3",
+  "simpleSavingsCalc_pytest.py::test_calculation4",
+  "simpleSavingsCalc_pytest.py::test_nan_initial_deposit",
+  "simpleSavingsCalc_pytest.py::test_nan_interest_rate",
+  "simpleSavingsCalc_pytest.py::test_nan_monthly_contrib",
+  "simpleSavingsCalc_pytest.py::test_nan_time_period",
+  "simpleSavingsCalc_pytest.py::test_negative_initial_deposit",
+  "simpleSavingsCalc_pytest.py::test_negative_interest_rate",
+  "simpleSavingsCalc_pytest.py::test_negative_monthly_contrib",
+  "simpleSavingsCalc_pytest.py::test_negative_time_period"
 ]
