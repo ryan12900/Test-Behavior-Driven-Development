@@ -27,27 +27,27 @@ def test_NaN_interestRates():
 def test_calc1():
     d = dict()
     d['Total Balance'] = 1269.06 
-    d['Total Interes'] = 269.06
+    d['Total Interest'] = 269.06
     assert BankFunctions.cdCalc(1000,2.5,10) == d
     print("--Should accurately calculate the total balance and total interest based on inputs--")
 
 def test_calc2():
     d = dict()
     d['Total Balance'] = 2819.88
-    d['Total Interes'] = 319.88
+    d['Total Interest'] = 319.88
     assert BankFunctions.cdCalc(2500,3.5,3.5) == d
     print("--Should accurately calculate the total balance and total interest based on inputs--")
 
 def test_calc3():
     d = dict()
     d['Total Balance'] = 6600.15 
-    d['Total Interes'] = 1550.15
+    d['Total Interest'] = 1550.15
     assert BankFunctions.cdCalc(5050,5,5.5) == d
     print("--Should accurately calculate the total balance and total interest based on inputs--")
 
 def test_calc4():
     d = dict()
     d['Total Balance'] = 1121.50 
-    d['Total Interes'] = 121.50
+    d['Total Interest'] = 121.50
     assert BankFunctions.cdCalc(1000,3.4,3.5) == d
     print("--Should accurately calculate the total balance and total interest based on inputs--")
