@@ -59,5 +59,7 @@ All tests passing for CD Calculator
 
 # Screencasts
 
-[Screencast - Test First Process](https://github.com/ryan12900/Test-Behavior-Driven-Development/blob/main/reports/Screencast%201.mp4)
+
+https://user-images.githubusercontent.com/40064666/136883289-d5688b9a-e660-493a-87d3-635f817f4402.mp4
+
 
