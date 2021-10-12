@@ -162,6 +162,30 @@ def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
     except(ValueError):
         return("Interest rate must be a float")
 
+    if home_price < 0:
+        return "Home price should not be negative"
+    if down_payment < 0:
+        return "Down payment should not be negative"
+    if loan_length < 0:
+        return "Loan length should not be negative"
+    if interest_rate < 0:
+        return "Interest rate should not be negative"
+    if(down_payment > 100):
+        return "Down payment should not be over 100%"
+
+    r = interest_rate / 1200
+    n = 12 * loan_length
+    p = home_price*(1-down_payment/100)
+    m = p * ((r*(1+r)**n) / (((1+r)**n)-1))
+
+    d = dict()
+    d['Monthly Payment'] = round(m, 2)
+    d['Amount Paid in Interest'] = round(m * n - p, 2)
+    d['Amount Paid in Principle'] = round(p, 2)
+    d['Total Amount Paid'] = round(m * n, 2)
+
+    return d
+
 def cdCalc(initDeposit, yearPeriod, interestRate):
     try:
         math.isnan(initDeposit)
@@ -216,7 +240,6 @@ def main():
             result = cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
             print(result)
         elif option == 4:
-
             home_price = input("Enter the home price")
             down_payment = input("Enter the down payment as a percentage")
             loan_length = input("Enter the loan length in years")
