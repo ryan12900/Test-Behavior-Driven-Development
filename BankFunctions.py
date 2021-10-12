@@ -1,7 +1,53 @@
 import math
 
-def ccPayoff():
-    return 0
+def ccPayoff(ccBalance, ccInterestRate, months):
+    try:
+        math.isnan(ccBalance)
+    except TypeError:
+        return "CC balance input value must be numeric."
+    try: 
+        math.isnan(ccInterestRate)
+    except TypeError:
+        return "CC interest rate input value must be numeric."
+    try:
+        math.isnan(months)
+    except TypeError:
+        return "Desired months to payoff input value must be numeric."
+    if ccBalance < 0:
+        return "CC balance cannot be negative."
+    if ccInterestRate < 0:
+        return "CC interest rate cannot be negative."
+    if months < 0:
+        return "Desired months to payoff cannot be negative."
+
+    monthlyPayment = 0
+    totalInterest = 0
+    lowMonthlyPayment = ccBalance / months
+    highMonthlyPayment = (ccBalance * (1 + (ccInterestRate/100.00/12 * months))) / months
+    balance = ccBalance
+    while balance != 0:
+        monthlyPayment = (lowMonthlyPayment + highMonthlyPayment) / 2
+        totalInterest = 0
+        balance = ccBalance
+        m = 0
+        while m < months:
+            m += 1
+            balance -= monthlyPayment
+            interest = balance * (ccInterestRate/100.00/12)
+            balance += interest
+            totalInterest += interest
+        if balance <= 0:
+            highMonthlyPayment = monthlyPayment
+        elif balance >= 0:
+            lowMonthlyPayment = monthlyPayment
+        balance = round(balance, 2)
+
+    d = dict()
+    d['Monthly Payment'] = round(monthlyPayment, 2)
+    d['Total Principal Paid'] = round(ccBalance, 2)
+    d['Total Interest Paid'] = round(totalInterest, 2)
+    return d
+    
 
 def simpleSavingsCalc():
     return 0
@@ -60,7 +106,11 @@ def main():
     while(1):
         option = int(input("Please select a bank function to execute:\n1. Credit Card Payoff\n2. Simple Savings Calculator\n3. Credit Card Minimum Payment Calculator\n4. Mortgage Calculator\n5. CD Calculator\n6. Exit\n"))
         if option == 1:
-            ccPayoff()
+            ccBalance = float(input("Please enter the CC balance (eg. 1234.56): "))
+            ccInterestRate = float(input("Please enter the CC interest rate (eg. 12.3): "))
+            months = int(input("Please enter the desired months to payoff (eg. 12): "))
+            result = ccPayoff(ccBalance, ccInterestRate, months)
+            print(result)
         elif option == 2:
             simpleSavingsCalc()
         elif option == 3:
