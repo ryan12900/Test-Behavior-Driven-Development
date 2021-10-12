@@ -1,56 +1,166 @@
 import math
 
-def ccPayoff():
-    return 0
-
-def simpleSavingsCalc():
-    return 0
-
-def ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent):
+def cc_payoff(cc_balance, cc_interest_rate, months):
     try:
-        math.isnan(ccBalance)
-    except TypeError:
+        cc_balance = float(cc_balance)
+    except ValueError:
         return "CC balance input value must be numeric."
     try: 
-        math.isnan(ccInterestRate)
-    except TypeError:
+        cc_interest_rate= float(cc_interest_rate)
+    except ValueError:
         return "CC interest rate input value must be numeric."
     try:
-        math.isnan(minPaymentPercent)
-    except TypeError:
-        return "Minimum payment percent input value must be numeric."
-    if ccBalance < 0:
+        months = int(months)
+    except ValueError:
+        return "Desired months to payoff input value must be numeric."
+    if cc_balance < 0:
         return "CC balance cannot be negative."
-    if ccInterestRate < 0:
+    if cc_interest_rate < 0:
         return "CC interest rate cannot be negative."
-    if minPaymentPercent < 0:
-        return "Minimum payment percent cannot be negative."
-    if minPaymentPercent > 20:
-        return "Minimum payment percent input value should not be greater than 20%."
-    monthlyPayment = round((minPaymentPercent / 100.00) * ccBalance, 2)
-    months = -1
-    currentBalance = ccBalance 
-    totalPayment = ccBalance
-    while currentBalance > 0.00:
-        currentPayment = round(currentBalance * (minPaymentPercent/100.00),2)
-        interestAmnt = round(currentBalance * (ccInterestRate/100.00/12),2)
-        if currentPayment < 15:
-            currentPayment = 15
-        
-        currentBalance -= currentPayment
-        currentBalance += interestAmnt
-        totalPayment += interestAmnt
-        months += 1
+    if months < 0:
+        return "Desired months to payoff cannot be negative."
 
-    totalPayment = round(totalPayment, 2)
+    monthly_payment = 0
+    total_interest = 0
+    low_monthly_payment = cc_balance / months
+    high_monthly_payment = (cc_balance * (1 + (cc_interest_rate/100.00/12 * months))) / months
+    balance = cc_balance
+    while balance != 0:
+        monthly_payment = (low_monthly_payment + high_monthly_payment) / 2
+        total_interest = 0
+        balance = cc_balance
+        m = 0
+        while m < months:
+            m += 1
+            balance -= monthly_payment
+            interest = balance * (cc_interest_rate/100.00/12)
+            balance += interest
+            total_interest += interest
+        if balance <= 0:
+            high_monthly_payment = monthly_payment
+        elif balance >= 0:
+            low_monthly_payment = monthly_payment
+        balance = round(balance, 2)
+
     d = dict()
-    d['Monthly Payment'] = monthlyPayment
-    d['Months'] = months
-    d['Total Payment'] = totalPayment
+    d['Monthly Payment'] = round(monthly_payment, 2)
+    d['Total Principal Paid'] = round(cc_balance, 2)
+    d['Total Interest Paid'] = round(total_interest, 2)
+    return d
+    
+
+def simple_savings_calc(initial_deposit, monthly_contrib, time_period, interest_rate):
+    try:
+        initial_deposit = float(initial_deposit)
+    except ValueError:
+        return "Initial deposit value must be numeric."
+    try:
+        monthly_contrib = float(monthly_contrib)
+    except ValueError:
+        return "Monthly contribution value must be numeric."
+    try:
+        time_period = float(time_period)
+    except ValueError:
+        return "Time period must be numeric, and in year form. e.g: 2.5 (years)"
+    try:
+       interest_rate = float(interest_rate)
+    except ValueError:
+        return "Interest rate value must be numeric."
+    if initial_deposit < 0:
+        return "Initial deposit cannot be negative."
+    if monthly_contrib < 0:
+        return "Monthly contribution cannot be negative."
+    if time_period < 0:
+        return "Time period cannot be negative."
+    if interest_rate < 0:
+        return "Interest rate cannot be negative."
+
+    months = math.floor(time_period * 12)
+    count = 0
+    total_balance = initial_deposit + 0.0
+    interest = interest_rate / 100.0
+    accum_interest = 0.0
+
+    while (count < months):
+        total_balance += monthly_contrib
+        count+=1
+        if (count % 12 == 0):
+            accum_interest += (total_balance * interest)
+            total_balance = round(((total_balance * interest) + total_balance),2)
+        
+    
+    total_balance = round(total_balance, 2)
+    total_contrib = round((monthly_contrib * months),2)
+    accum_interest = round(accum_interest,2)
+    d = dict()
+
+    d['Total Savings balance'] = total_balance
+    d['Total Contributions'] = total_contrib
+    d['Interest Earned'] = accum_interest
+
     return d
 
-def mortgageCalc():
-    return 0
+def cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent):
+    try:
+        cc_balance = float(cc_balance)
+    except ValueError:
+        return "CC balance input value must be numeric."
+    try: 
+        cc_interest_rate = float(cc_interest_rate)
+    except ValueError:
+        return "CC interest rate input value must be numeric."
+    try:
+        min_payment_percent = float(min_payment_percent)
+    except ValueError:
+        return "Minimum payment percent input value must be numeric."
+    if cc_balance < 0:
+        return "CC balance cannot be negative."
+    if cc_interest_rate < 0:
+        return "CC interest rate cannot be negative."
+    if min_payment_percent < 0:
+        return "Minimum payment percent cannot be negative."
+    if min_payment_percent > 20:
+        return "Minimum payment percent input value should not be greater than 20%."
+    monthly_payment = round((min_payment_percent / 100.00) * cc_balance, 2)
+    months = -1
+    current_balance = cc_balance 
+    total_payment = cc_balance
+    while current_balance > 0.00:
+        current_payment = round(current_balance * (min_payment_percent/100.00),2)
+        interest_amnt = round(current_balance * (cc_interest_rate/100.00/12),2)
+        if current_payment < 15:
+            current_payment = 15
+
+        current_balance -= current_payment
+        current_balance += interest_amnt
+        total_payment += interest_amnt
+        months += 1
+
+    total_payment = round(total_payment, 2)
+    d = dict()
+    d['Monthly Payment'] = monthly_payment
+    d['Months'] = months
+    d['Total Payment'] = total_payment
+    return d
+
+def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
+    try:
+        if not float(loan_length).is_integer():
+            return "Loan length in years must be an integer"
+    except(ValueError):
+        return("Loan length in years must be an integer")
+    try:
+        home_price = float(home_price)
+    except(ValueError):
+        return("Home price must be a float")
+    try:
+        down_payment = float(down_payment)
+    except(ValueError):
+        return("Down payment percentage must be a float")
+    try:
+        interest_rate = float(interest_rate)
+    except(ValueError):
+        return("Interest rate must be a float")
 
 def cdCalc(initDeposit, yearPeriod, interestRate):
     try:
@@ -87,17 +197,32 @@ def main():
     while(1):
         option = int(input("Please select a bank function to execute:\n1. Credit Card Payoff\n2. Simple Savings Calculator\n3. Credit Card Minimum Payment Calculator\n4. Mortgage Calculator\n5. CD Calculator\n6. Exit\n"))
         if option == 1:
-            ccPayoff()
+            cc_balance = float(input("Please enter the CC balance (eg. 1234.56): "))
+            cc_interest_rate = float(input("Please enter the CC interest rate (eg. 12.3): "))
+            months = int(input("Please enter the desired months to payoff (eg. 12): "))
+            result = cc_payoff(cc_balance, cc_interest_rate, months)
+            print(result)
         elif option == 2:
-            simpleSavingsCalc()
+            initial_deposit = input("Please enter the initial deposit amount (eg. 1000.00): ")
+            monthly_contrib = input("Please enter the desired monthly contribution amount (e.g 100.00): ")
+            time_period = input("Please enter a numerical time period in years (e.g 2.5 ): ")
+            interest_rate = input("Please enter an interest rate as a percentage (e.g 10.52): ")
+            result = simple_savings_calc(initial_deposit,monthly_contrib, time_period, interest_rate)
+            print(result)
         elif option == 3:
-            ccBalance = float(input("Please enter the CC balance (eg. 1234.56): "))
-            ccInterestRate = float(input("Please enter the CC interest rate (eg. 12.3): "))
-            minPaymentPercent = float(input("Please enter the minimum payment percentage (eg 12.3): "))
-            result = ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent)
+            cc_balance =input("Please enter the CC balance (eg. 1234.56): ")
+            cc_interest_rate = input("Please enter the CC interest rate (eg. 12.3): ")
+            min_payment_percent = input("Please enter the minimum payment percentage (eg 12.3): ")
+            result = cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
             print(result)
         elif option == 4:
-            mortgageCalc()
+
+            home_price = input("Enter the home price")
+            down_payment = input("Enter the down payment as a percentage")
+            loan_length = input("Enter the loan length in years")
+            interest_rate = input("Enter the interest rate")
+            result = mortgage_calc(home_price, down_payment, loan_length, interest_rate)
+            print(result)
         elif option == 5:
             initDeposit = float(input("Please enter the initial deposit amount (eg. 1000.50): "))
             yearPeriod = float(input("Please enter the period in years(eg. 2.5): "))
