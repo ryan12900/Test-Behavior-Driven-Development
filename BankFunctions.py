@@ -52,8 +52,35 @@ def ccMinPaymentCalc(ccBalance, ccInterestRate, minPaymentPercent):
 def mortgageCalc():
     return 0
 
-def cdCalc():
-    return 0
+def cdCalc(initDeposit, yearPeriod, interestRate):
+    try:
+        math.isnan(initDeposit)
+    except TypeError:
+        return "Initial deposit input value must be numeric."
+    try: 
+        math.isnan(yearPeriod)
+    except TypeError:
+        return "Period in years input value must be numeric."
+    try:
+        math.isnan(interestRate)
+    except TypeError:
+        return "Interest rate input value must be numeric."
+    if initDeposit < 0:
+        return "Initial deposit cannot be negative."
+    if yearPeriod < 0:
+        return "Period in years cannot be negative."
+    if interestRate < 0:
+        return "Interest rate cannot be negative."
+
+    totBalance = initDeposit
+    totInterest = 0
+    months = math.floor(yearPeriod*12)
+    totBalance = round(initDeposit*((1+(0.01*interestRate)) ** (months/12)),2)
+    totInterest= round(totBalance - initDeposit,2)
+    d = dict()
+    d['Total Balance'] = totBalance
+    d['Total Interest'] = totInterest
+    return d
 
 
 def main():
@@ -72,7 +99,11 @@ def main():
         elif option == 4:
             mortgageCalc()
         elif option == 5:
-            cdCalc()
+            initDeposit = float(input("Please enter the initial deposit amount (eg. 1000.50): "))
+            yearPeriod = float(input("Please enter the period in years(eg. 2.5): "))
+            interestRate = float(input("Please enter the interest rate calculated yearly (eg. 10.5): "))
+            result = cdCalc(initDeposit,yearPeriod,interestRate)
+            print(result)
         elif option == 6:
             print("Quitting program.")
             break
