@@ -1,5 +1,4 @@
 [
-<<<<<<< HEAD
   "ccMinPaymentCalc_pytest.py::test_NaN_ccBalance",
   "ccMinPaymentCalc_pytest.py::test_NaN_ccInterestRate",
   "ccMinPaymentCalc_pytest.py::test_NaN_minPaymentPercent",
@@ -10,26 +9,16 @@
   "ccMinPaymentCalc_pytest.py::test_negative_ccBalance",
   "ccMinPaymentCalc_pytest.py::test_negative_ccInterestRate",
   "ccMinPaymentCalc_pytest.py::test_negative_minPaymentPercent",
-  "ccPayoff_pytest.py::test_NaN_ccBalance",
-  "ccPayoff_pytest.py::test_NaN_ccInterestRate",
-  "ccPayoff_pytest.py::test_NaN_months",
-  "ccPayoff_pytest.py::test_integer_calculation",
-  "ccPayoff_pytest.py::test_integer_calculation1",
-  "ccPayoff_pytest.py::test_negative_ccBalance",
-  "ccPayoff_pytest.py::test_negative_ccInterestRate",
-  "ccPayoff_pytest.py::test_negative_months"
-=======
-  "simpleSavingsCalc_pytest.py::test_negative_initial_deposit", 
-  "simpleSavingsCalc_pytest.py::test_negative_monthly_contrib", 
-  "simpleSavingsCalc_pytest.py::test_negative_time_period", 
-  "simpleSavingsCalc_pytest.py::test_negative_interest_rate", 
-  "simpleSavingsCalc_pytest.py::test_nan_initial_deposit", 
-  "simpleSavingsCalc_pytest.py::test_nan_monthly_contrib", 
-  "simpleSavingsCalc_pytest.py::test_nan_time_period", 
-  "simpleSavingsCalc_pytest.py::test_nan_interest_rate", 
-  "simpleSavingsCalc_pytest.py::test_calculation1", 
-  "simpleSavingsCalc_pytest.py::test_calculation2", 
-  "simpleSavingsCalc_pytest.py::test_calculation3", 
-  "simpleSavingsCalc_pytest.py::test_calculation4"
->>>>>>> main
+  "mortgageCalc_pytest.py::test_exceeded_down_payment",
+  "mortgageCalc_pytest.py::test_float_loan_length",
+  "mortgageCalc_pytest.py::test_mortgage_calc1",
+  "mortgageCalc_pytest.py::test_mortgage_calc2",
+  "mortgageCalc_pytest.py::test_nan_down_payment",
+  "mortgageCalc_pytest.py::test_nan_home_price",
+  "mortgageCalc_pytest.py::test_nan_interest_rate",
+  "mortgageCalc_pytest.py::test_nan_loan_length",
+  "mortgageCalc_pytest.py::test_negative_down_payment",
+  "mortgageCalc_pytest.py::test_negative_home_price",
+  "mortgageCalc_pytest.py::test_negative_interest_rate",
+  "mortgageCalc_pytest.py::test_negative_loan_length"
 ]
