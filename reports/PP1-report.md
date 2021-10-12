@@ -24,3 +24,23 @@ In order to not have any code conflicts and complications, each group member wor
 This approach also allowed us to make sure that anything on the 'main' branch is readily deployable and working.
 
 Finally, this approach allowed our team members to freely experiment on their own branch when implementing their code, and made sure each of our code was reviewed by another member before being merged to the 'main' branch.
+
+# All Tests Passing
+
+![image](https://user-images.githubusercontent.com/44078719/136879750-2ec0a8cc-c66e-49cd-a2ee-bb462a7a40ff.png)
+
+All tests passing for Credit Card Payoff Calculator
+
+![image](https://user-images.githubusercontent.com/44078719/136880132-2ed1e9e6-e92f-4756-aae3-a8ad04cbfd48.png)
+
+All tests passing for Simple Savings Calculator
+
+![image](https://user-images.githubusercontent.com/44078719/136879621-99181a25-213f-451b-8387-f7f476d9e8f7.png)
+
+All tests passing for Credit Card Minimum Payment Calculator
+
+![image](https://user-images.githubusercontent.com/44078719/136879953-7096849d-c947-4b62-b2cb-5fc24e4205ed.png)
+
+All tests passing for Mortgage Calculator 
+
+
