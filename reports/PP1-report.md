@@ -25,6 +25,10 @@ This approach also allowed us to make sure that anything on the 'main' branch is
 
 Finally, this approach allowed our team members to freely experiment on their own branch when implementing their code, and made sure each of our code was reviewed by another member before being merged to the 'main' branch.
 
+# All Test Suites Passing
+
+![image](https://user-images.githubusercontent.com/44078719/136881029-d6bd2f97-b3e7-450b-abda-0bfdb3e2624c.png)
+
 # All Tests Passing
 
 ![image](https://user-images.githubusercontent.com/44078719/136879750-2ec0a8cc-c66e-49cd-a2ee-bb462a7a40ff.png)
@@ -43,4 +47,13 @@ All tests passing for Credit Card Minimum Payment Calculator
 
 All tests passing for Mortgage Calculator 
 
+![image](https://user-images.githubusercontent.com/44078719/136880394-c8949cf9-867c-40c1-8eac-ea9d569f3bb8.png)
+
+All tests passing for CD Calculator
+
+#Test Coverage
+
+![image](https://user-images.githubusercontent.com/44078719/136881802-9c7fd593-0da9-4f79-906b-ae4e53dce6c1.png)
+
+![image](https://user-images.githubusercontent.com/44078719/136881957-ddc8c70a-81da-4357-9d44-070e6cc7a3a7.png)
 
