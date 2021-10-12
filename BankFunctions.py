@@ -35,18 +35,17 @@ def simpleSavingsCalc(initialDeposit, monthlyContrib, timePeriod, interestRate):
     interest = interestRate / 100.0
     accumInterest = 0.0
 
-    while (count <= months):
+    while (count < months):
         totalBalance += monthlyContrib
         count+=1
         if (count % 12 == 0):
-            print("year passed")
             accumInterest += (totalBalance * interest)
-            print(accumInterest)
             totalBalance = round(((totalBalance * interest) + totalBalance),2)
         
     
     totalBalance = round(totalBalance, 2)
     totalContrib = round((monthlyContrib * months),2)
+    accumInterest = round(accumInterest,2)
     d = dict()
 
     d['Total Savings balance'] = totalBalance

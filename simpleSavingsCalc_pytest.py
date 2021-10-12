@@ -58,3 +58,10 @@ def test_calculation3():
     d['Interest Earned'] = 604.00
     assert BankFunctions.simpleSavingsCalc(5000,50,2,5) == d
     print("--should correctly output savings total, total contributions, and interest accumulated based on real calculations--")
+def test_calculation4():
+    d = dict()
+    d['Total Savings balance'] = 4014.69  
+    d['Total Contributions'] = 2400.00
+    d['Interest Earned'] = 613.69
+    assert BankFunctions.simpleSavingsCalc(1001,100,2,10.52) == d
+    print("--should correctly output savings total, total contributions, and interest accumulated based on real calculations--")
