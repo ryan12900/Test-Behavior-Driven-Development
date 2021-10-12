@@ -3,54 +3,54 @@ import math
 def cc_payoff():
     return 0
 
-def simpleSavingsCalc(initialDeposit, monthlyContrib, timePeriod, interestRate):
+def simple_savings_calc(initial_deposit, monthly_contrib, time_period, interest_rate):
     try:
-        initialDeposit = float(initialDeposit)
+        initial_deposit = float(initial_deposit)
     except ValueError:
         return "Initial deposit value must be numeric."
     try:
-        monthlyContrib = float(monthlyContrib)
+        monthly_contrib = float(monthly_contrib)
     except ValueError:
         return "Monthly contribution value must be numeric."
     try:
-        timePeriod = float(timePeriod)
+        time_period = float(time_period)
     except ValueError:
         return "Time period must be numeric, and in year form. e.g: 2.5 (years)"
     try:
-       interestRate = float(interestRate)
+       interest_rate = float(interest_rate)
     except ValueError:
         return "Interest rate value must be numeric."
-    if initialDeposit < 0:
+    if initial_deposit < 0:
         return "Initial deposit cannot be negative."
-    if monthlyContrib < 0:
+    if monthly_contrib < 0:
         return "Monthly contribution cannot be negative."
-    if timePeriod < 0:
+    if time_period < 0:
         return "Time period cannot be negative."
-    if interestRate < 0:
+    if interest_rate < 0:
         return "Interest rate cannot be negative."
 
-    months = math.floor(timePeriod * 12)
+    months = math.floor(time_period * 12)
     count = 0
-    totalBalance = initialDeposit + 0.0
-    interest = interestRate / 100.0
-    accumInterest = 0.0
+    total_balance = initial_deposit + 0.0
+    interest = interest_rate / 100.0
+    accum_interest = 0.0
 
     while (count < months):
-        totalBalance += monthlyContrib
+        total_balance += monthly_contrib
         count+=1
         if (count % 12 == 0):
-            accumInterest += (totalBalance * interest)
-            totalBalance = round(((totalBalance * interest) + totalBalance),2)
+            accum_interest += (total_balance * interest)
+            total_balance = round(((total_balance * interest) + total_balance),2)
         
     
-    totalBalance = round(totalBalance, 2)
-    totalContrib = round((monthlyContrib * months),2)
-    accumInterest = round(accumInterest,2)
+    total_balance = round(total_balance, 2)
+    total_contrib = round((monthly_contrib * months),2)
+    accum_interest = round(accum_interest,2)
     d = dict()
 
-    d['Total Savings balance'] = totalBalance
-    d['Total Contributions'] = totalContrib
-    d['Interest Earned'] = accumInterest
+    d['Total Savings balance'] = total_balance
+    d['Total Contributions'] = total_contrib
+    d['Interest Earned'] = accum_interest
 
     return d
 
@@ -110,11 +110,11 @@ def main():
         if option == 1:
             cc_payoff()
         elif option == 2:
-            initialDeposit = input("Please enter the initial deposit amount (eg. 1000.0): ")
-            monthlyContrib = input("Please enter the desired monthly contribution amount (e.g 100.0): ")
-            timePeriod = input("Please enter a numerical time period in years (e.g 2.5 ): ")
-            interestRate = input("Please enter an interest rate as a percentage (e.g 10.52): ")
-            result = simpleSavingsCalc(initialDeposit,monthlyContrib, timePeriod, interestRate)
+            initial_deposit = input("Please enter the initial deposit amount (eg. 1000.00): ")
+            monthly_contrib = input("Please enter the desired monthly contribution amount (e.g 100.00): ")
+            time_period = input("Please enter a numerical time period in years (e.g 2.5 ): ")
+            interest_rate = input("Please enter an interest rate as a percentage (e.g 10.52): ")
+            result = simple_savings_calc(initial_deposit,monthly_contrib, time_period, interest_rate)
             print(result)
         elif option == 3:
             cc_balance =input("Please enter the CC balance (eg. 1234.56): ")
