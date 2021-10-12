@@ -147,6 +147,7 @@ def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
     try:
         if not float(loan_length).is_integer():
             return "Loan length in years must be an integer"
+        loan_length = int(loan_length)
     except(ValueError):
         return("Loan length in years must be an integer")
     try:
@@ -240,10 +241,10 @@ def main():
             result = cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
             print(result)
         elif option == 4:
-            home_price = input("Enter the home price")
-            down_payment = input("Enter the down payment as a percentage")
-            loan_length = input("Enter the loan length in years")
-            interest_rate = input("Enter the interest rate")
+            home_price = input("Enter the home price: ")
+            down_payment = input("Enter the down payment as a percentage: ")
+            loan_length = input("Enter the loan length in years: ")
+            interest_rate = input("Enter the interest rate: ")
             result = mortgage_calc(home_price, down_payment, loan_length, interest_rate)
             print(result)
         elif option == 5:
