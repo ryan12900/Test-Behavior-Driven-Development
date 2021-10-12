@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   "ccMinPaymentCalc_pytest.py::test_NaN_ccBalance",
   "ccMinPaymentCalc_pytest.py::test_NaN_ccInterestRate",
   "ccMinPaymentCalc_pytest.py::test_NaN_minPaymentPercent",
@@ -17,4 +18,18 @@
   "ccPayoff_pytest.py::test_negative_ccBalance",
   "ccPayoff_pytest.py::test_negative_ccInterestRate",
   "ccPayoff_pytest.py::test_negative_months"
+=======
+  "simpleSavingsCalc_pytest.py::test_negative_initial_deposit", 
+  "simpleSavingsCalc_pytest.py::test_negative_monthly_contrib", 
+  "simpleSavingsCalc_pytest.py::test_negative_time_period", 
+  "simpleSavingsCalc_pytest.py::test_negative_interest_rate", 
+  "simpleSavingsCalc_pytest.py::test_nan_initial_deposit", 
+  "simpleSavingsCalc_pytest.py::test_nan_monthly_contrib", 
+  "simpleSavingsCalc_pytest.py::test_nan_time_period", 
+  "simpleSavingsCalc_pytest.py::test_nan_interest_rate", 
+  "simpleSavingsCalc_pytest.py::test_calculation1", 
+  "simpleSavingsCalc_pytest.py::test_calculation2", 
+  "simpleSavingsCalc_pytest.py::test_calculation3", 
+  "simpleSavingsCalc_pytest.py::test_calculation4"
+>>>>>>> main
 ]
