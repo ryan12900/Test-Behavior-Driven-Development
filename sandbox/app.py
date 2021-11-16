@@ -29,6 +29,30 @@ def cc_payoff():
     json_result = BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
     return json.dumps(json_result)
 
+@app.route('/simple_savings_calc', methods=['POST'])
+def simple_savings_calc():
+  if request.method == 'POST':
+    #d = simplejson.loads(request.POST.get('data'))
+    d = request.get_json()
+    #print(d)
+    initial_deposit = d['Initial Deposit']
+    monthly_contrib = d['Monthly Contribution']
+    time_period = d['Time Period']
+    interest_rate = d['Interest Rate']
+    json_result = BankFunctions.simple_savings_calc(initial_deposit, monthly_contrib, time_period, interest_rate)
+    return json.dumps(json_result)
+
+@app.route('/cc_min_payment_calc', methods=['POST'])
+def cc_min_payment_calc():
+  if request.method == 'POST':
+    #d = simplejson.loads(request.POST.get('data'))
+    d = request.get_json()
+    #print(d)
+    cc_balance = d['CC Balance']
+    cc_interest_rate = d['CC Interest Rate']
+    min_payment_percent = d['Minimum Payment Percent']
+    json_result = BankFunctions.cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
+    return json.dumps(json_result)
 
 # @app.route('/')
 # def index():

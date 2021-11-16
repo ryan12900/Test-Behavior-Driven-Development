@@ -56,27 +56,27 @@ def simple_savings_calc(initial_deposit, monthly_contrib, time_period, interest_
     try:
         initial_deposit = float(initial_deposit)
     except ValueError:
-        return "Initial deposit value must be numeric."
+        return jsonify({'result': "Initial deposit value must be numeric."})
     try:
         monthly_contrib = float(monthly_contrib)
     except ValueError:
-        return "Monthly contribution value must be numeric."
+        return jsonify({'result': "Monthly contribution value must be numeric."})
     try:
         time_period = float(time_period)
     except ValueError:
-        return "Time period must be numeric, and in year form. e.g: 2.5 (years)"
+        return jsonify({'result': "Time period must be numeric, and in year form. e.g: 2.5 (years)"})
     try:
        interest_rate = float(interest_rate)
     except ValueError:
-        return "Interest rate value must be numeric."
+        return jsonify({'result': "Interest rate value must be numeric."})
     if initial_deposit < 0:
-        return "Initial deposit cannot be negative."
+        return jsonify({'result': "Initial deposit cannot be negative."})
     if monthly_contrib < 0:
-        return "Monthly contribution cannot be negative."
+        return jsonify({'result': "Monthly contribution cannot be negative."})
     if time_period < 0:
-        return "Time period cannot be negative."
+        return jsonify({'result': "Time period cannot be negative."})
     if interest_rate < 0:
-        return "Interest rate cannot be negative."
+        return jsonify({'result': "Interest rate cannot be negative."})
 
     months = math.floor(time_period * 12)
     count = 0
@@ -101,29 +101,29 @@ def simple_savings_calc(initial_deposit, monthly_contrib, time_period, interest_
     d['Total Contributions'] = total_contrib
     d['Interest Earned'] = accum_interest
 
-    return d
+    return json.dumps(d)
 
 def cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent):
     try:
         cc_balance = float(cc_balance)
     except ValueError:
-        return "CC balance input value must be numeric."
+        return jsonify({'result': "CC balance input value must be numeric."})
     try: 
         cc_interest_rate = float(cc_interest_rate)
     except ValueError:
-        return "CC interest rate input value must be numeric."
+        return jsonify({'result': "CC interest rate input value must be numeric."})
     try:
         min_payment_percent = float(min_payment_percent)
     except ValueError:
-        return "Minimum payment percent input value must be numeric."
+        return jsonify({'result': "Minimum payment percent input value must be numeric."})
     if cc_balance < 0:
-        return "CC balance cannot be negative."
+        return jsonify({'result': "CC balance cannot be negative."})
     if cc_interest_rate < 0:
-        return "CC interest rate cannot be negative."
+        return jsonify({'result': "CC interest rate cannot be negative."})
     if min_payment_percent < 0:
-        return "Minimum payment percent cannot be negative."
+        return jsonify({'result': "Minimum payment percent cannot be negative."})
     if min_payment_percent > 20:
-        return "Minimum payment percent input value should not be greater than 20%."
+        return jsonify({'result': "Minimum payment percent input value should not be greater than 20%."})
     monthly_payment = round((min_payment_percent / 100.00) * cc_balance, 2)
     months = -1
     current_balance = cc_balance 
@@ -144,7 +144,7 @@ def cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent):
     d['Monthly Payment'] = monthly_payment
     d['Months'] = months
     d['Total Payment'] = total_payment
-    return d
+    return json.dumps(d)
 
 def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
     try:
