@@ -29,6 +29,7 @@ def cc_payoff():
     json_result = BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
     return json.dumps(json_result)
 
+
 # @app.route('/')
 # def index():
 #   return 'Index Page'
