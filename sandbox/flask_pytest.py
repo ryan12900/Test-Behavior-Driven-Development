@@ -52,3 +52,34 @@ def test_cc_min_payment_calc():
     resDict['Total Payment'] = 5289.53
     assert response.status_code == 200 and response.json() == json.dumps(resDict)
     print("Test to see if CC Min Payment Calc API is working properly and returns correct response")
+
+
+def test_mortgage_calc():
+    dict2 = {
+                "Home Price": 480000,
+                "Down Payment":  50,
+                "Loan Length": 30,
+                "Interest Rate": 10
+            }
+    response = requests.post(url+'/mortgage_calc', json=dict2)
+    resDict = dict()
+    resDict['Monthly Payment'] = 2106.17
+    resDict['Amount Paid in Interest'] = 518221.84
+    resDict['Amount Paid in Principle'] = 240000.00
+    resDict['Total Amount Paid'] = 758221.84
+    assert response.status_code == 200 and response.json() == json.dumps(resDict)
+    print("Test to see if Mortgage Calculator API is working properly and returns correct response")
+
+def test_cdCalc():
+    dict2 = {
+                "Init Deposit": 2500,
+                "Year Period": 3.5,
+                "Interest Rate": 3.5
+            }
+    response = requests.post(url+'/cdCalc', json=dict2)
+    resDict = dict()
+    resDict['Total Balance'] = 2819.88
+    resDict['Total Interest'] = 319.88
+    
+    assert response.status_code == 200 and response.json() == json.dumps(resDict)
+    print("Test to see if CD Calculator API is working properly and returns correct response")
