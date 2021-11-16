@@ -3,6 +3,7 @@ import os
 import BankFunctions
 import simplejson
 import requests
+import json
 
 os.environ['FLASK_ENV'] = 'development'
 os.environ['FLASK_APP'] = 'app.py'
@@ -25,7 +26,8 @@ def cc_payoff():
     cc_balance = d['CC Balance']
     cc_interest_rate = d['CC Interest Rate']
     months = d['Months']
-    return BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
+    json_result = BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
+    return json.dumps(json_result)
 
 # @app.route('/')
 # def index():
