@@ -26,8 +26,12 @@ def cc_payoff():
     cc_balance = d['CC Balance']
     cc_interest_rate = d['CC Interest Rate']
     months = d['Months']
+<<<<<<< HEAD
     json_result = BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
     return json.dumps(json_result)
+=======
+    return BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
+>>>>>>> e9dd5c55d57b428e5dc41f52b0523cad744648b5
 
 # @app.route('/')
 # def index():
