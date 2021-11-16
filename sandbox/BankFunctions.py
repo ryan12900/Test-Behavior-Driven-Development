@@ -149,33 +149,33 @@ def cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent):
 def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
     try:
         if not float(loan_length).is_integer():
-            return "Loan length in years must be an integer"
+            return jsonify({'result': "Loan length in years must be an integer"})
         loan_length = int(loan_length)
     except(ValueError):
-        return("Loan length in years must be an integer")
+        return jsonify({'result': "Loan length in years must be an integer"})
     try:
         home_price = float(home_price)
     except(ValueError):
-        return("Home price must be a float")
+        return jsonify({'result': "Home price must be a float"})
     try:
         down_payment = float(down_payment)
     except(ValueError):
-        return("Down payment percentage must be a float")
+        return jsonify({'result': "Down payment percentage must be a float"})
     try:
         interest_rate = float(interest_rate)
     except(ValueError):
-        return("Interest rate must be a float")
+        return jsonify({'result': "Interest rate must be a float"})
 
     if home_price < 0:
-        return "Home price should not be negative"
+        return jsonify({'result': "Home price should not be negative"})
     if down_payment < 0:
-        return "Down payment should not be negative"
+        return jsonify({'result': "Down payment should not be negative"})
     if loan_length < 0:
-        return "Loan length should not be negative"
+        return jsonify({'result': "Loan length should not be negative"})
     if interest_rate < 0:
-        return "Interest rate should not be negative"
+        return jsonify({'result': "Interest rate should not be negative"})
     if(down_payment > 100):
-        return "Down payment should not be over 100%"
+        return jsonify({'result': "Down payment should not be over 100%"})
 
     r = interest_rate / 1200
     n = 12 * loan_length
@@ -187,28 +187,28 @@ def mortgage_calc(home_price, down_payment, loan_length, interest_rate):
     d['Amount Paid in Interest'] = round(m * n - p, 2)
     d['Amount Paid in Principle'] = round(p, 2)
     d['Total Amount Paid'] = round(m * n, 2)
-
-    return d
+    return json.dumps(d)
+    #return d
 
 def cdCalc(init_Deposit, year_Period, interest_Rate):
     try:
         math.isnan(init_Deposit)
     except TypeError:
-        return "Initial deposit input value must be numeric."
+        return jsonify({'result': "Initial deposit input value must be numeric."})
     try: 
         math.isnan(year_Period)
     except TypeError:
-        return "Period in years input value must be numeric."
+        return jsonify({'result': "Period in years input value must be numeric."})
     try:
         math.isnan(interest_Rate)
     except TypeError:
-        return "Interest rate input value must be numeric."
+        return jsonify({'result': "Interest rate input value must be numeric."})
     if init_Deposit < 0:
-        return "Initial deposit cannot be negative."
+        return jsonify({'result': "Initial deposit cannot be negative."})
     if year_Period < 0:
-        return "Period in years cannot be negative."
+        return jsonify({'result': "Period in years cannot be negative."})
     if interest_Rate < 0:
-        return "Interest rate cannot be negative."
+        return jsonify({'result': "Interest rate cannot be negative."})
 
     tot_Balance = init_Deposit
     tot_Interest = 0
@@ -218,7 +218,8 @@ def cdCalc(init_Deposit, year_Period, interest_Rate):
     d = dict()
     d['Total Balance'] = tot_Balance
     d['Total Interest'] = tot_Interest
-    return d
+    return json.dumps(d)
+    #return d
 
 
 def main():

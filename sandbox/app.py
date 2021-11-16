@@ -54,6 +54,33 @@ def cc_min_payment_calc():
     json_result = BankFunctions.cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
     return json.dumps(json_result)
 
+
+@app.route('/mortgage_calc', methods=['POST'])
+def mortgage_calc():
+  if request.method == 'POST':
+    #d = simplejson.loads(request.POST.get('data'))
+    d = request.get_json()
+    #print(d)
+    home_price = d['Home Price']
+    down_payment = d['Down Payment']
+    loan_length = d['Loan Length']
+    interest_rate = d['Interest Rate']
+    json_result = BankFunctions.mortgage_calc(home_price, down_payment, loan_length, interest_rate)
+    return json.dumps(json_result)
+
+
+@app.route('/cdCalc', methods=['POST'])
+def cdCalc():
+  if request.method == 'POST':
+    #d = simplejson.loads(request.POST.get('data'))
+    d = request.get_json()
+    #print(d)
+    init_Deposit = d['Init Deposit']
+    year_Period = d['Year Period']
+    interest_Rate = d['Interest Rate']
+    json_result = BankFunctions.cdCalc(init_Deposit, year_Period, interest_Rate)
+    return json.dumps(json_result)
+    
 # @app.route('/')
 # def index():
 #   return 'Index Page'
