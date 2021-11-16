@@ -7,6 +7,8 @@ import json
 
 os.environ['FLASK_ENV'] = 'development'
 os.environ['FLASK_APP'] = 'app.py'
+
+
 app = Flask(__name__)
 
 @app.route('/')
