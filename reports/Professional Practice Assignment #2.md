@@ -8,7 +8,8 @@ Group: Ryan Ahmed, Joshua Aird, Brock Major, Dillon McGovern, Diana Osorio
 
 To access the App Enginge deployment, click this link https://peak-seat-332320.ue.r.appspot.com/. The following endpoints are available for access: /getApiKey, /revoke, /cc_payoff, /simple_savings_calc, /cc_min_payment_calc, /mortgage_calc, and /cdCalc. All of the endpoints except for /getApiKey and /revoke require an API key for access. In order to get an API key, a user must submit a POST request to the /getApiKey endpoint consisting of the following in JSON format: 
 
-```data = {
+```
+data = {
       'orgName': d['orgName'],
       'industry': d['industry'],
       'fullName': d['fullName'],
@@ -20,9 +21,10 @@ Once a user has a registered API key that was returned as a response when they g
 
 **Local Execution with Dockerfile**
 
-To deploy the app locally, go the \Test-Behavior-Driven-Development folder and run "docker build -t ppa2/docker-release .", then run "docker run -d -p 8080:5000 ppa2/docker-release".
+To deploy the app locally, go the \Test-Behavior-Driven-Development folder and run "docker build -t ppa2/docker-release .", then run "docker run -d -p 8080:5000 ppa2/docker-release". To run the tests, navigate  to the same \Test-Behavior-Driven-Development\sandbox folder and run the command "pytest flask_pytest.py -v -s -vv".
 
 # All Test Suites Passing
+![image](https://user-images.githubusercontent.com/44078719/142134691-98a263c1-b93b-4d96-9ca9-c54f1f6f9d3f.png)
 
 
 # Naming and Organizational Details
