@@ -7,7 +7,7 @@ click==7.1.2
 clickclick==20.10.2
 colorama==0.4.4
 configparser==5.1.0
-crypto==1.4.1
+Crypto==1.4.1
 cryptography==35.0.0
 DateTime==4.3
 Deprecated==1.2.13
