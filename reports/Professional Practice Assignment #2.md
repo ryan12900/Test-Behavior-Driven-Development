@@ -23,6 +23,8 @@ Once a user has a registered API key that was returned as a response when they g
 
 To deploy the app locally, go the \Test-Behavior-Driven-Development folder and run "docker build -t ppa2/docker-release .", then run "docker run -d -p 8080:5000 ppa2/docker-release". To run the tests, navigate  to the same \Test-Behavior-Driven-Development\sandbox folder and run the command "pytest flask_pytest.py -v -s -vv".
 
+If the Docker server is not running properly on the host, install all the required dependencies by running "pip install -r requirements.txt" in the \Test-Behavior-Driven-Development\sandbox folder, then run the command "flask run".
+
 # All Test Suites Passing
 ![image](https://user-images.githubusercontent.com/44078719/142134691-98a263c1-b93b-4d96-9ca9-c54f1f6f9d3f.png)
 
