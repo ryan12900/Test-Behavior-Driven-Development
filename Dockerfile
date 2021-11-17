@@ -19,6 +19,10 @@ WORKDIR /Test-Behavior-Driven-Development
 COPY /sandbox/requirements.txt sandbox/
 ENV PORT 8080
 ENV HOST 0.0.0.0
+RUN apk update
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev
+RUN apk add libressl-dev
+RUN apk add libffi-dev
 RUN pip install --no-cache-dir -r sandbox/requirements.txt
 RUN python -m pip install --upgrade pip
 EXPOSE 5000
