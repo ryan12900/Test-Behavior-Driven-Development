@@ -2,7 +2,6 @@ import pytest
 import requests
 import app
 import json
-import connexion
 import flask
 import responses
 import unittest
@@ -33,7 +32,7 @@ def test_fake_cc_payoff_implementation():
                 "Months": 7
             }
     sendJson = json.dumps(dict2)
-    headers = {'Content-type': 'application/json'}
+    headers = {'Content-type': 'application/json', 'apiKey': '3d065b67-f166-4630-b1c9-cb5fff86ab30'}
     resDict = dict()
     resDict['Monthly Payment'] = 223.15
     resDict['Total Principal Paid'] = 1542.0

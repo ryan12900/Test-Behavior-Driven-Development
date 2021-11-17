@@ -4,12 +4,38 @@ import BankFunctions
 import simplejson
 import requests
 import json
+import uuid
+from firebase import Firebase
+import datetime
+# import pyrebase
 
 os.environ['FLASK_ENV'] = 'development'
 os.environ['FLASK_APP'] = 'app.py'
 
 
+
 app = Flask(__name__)
+
+config = {
+  "apiKey": "AIzaSyCqTPcsdlnkZQzAvMrsWajGobVVAcRiKLg",
+  "authDomain": "softwaretestingproj.firebaseapp.com",
+  "databaseURL": "https://softwaretestingproj-default-rtdb.firebaseio.com/",
+  "storageBucket": "softwaretestingproj.appspot.com"
+}
+
+firebase = Firebase(config)
+
+db = firebase.database()
+
+#firebase = firebase.FirebaseApplication("https://softwaretestingproj-default-rtdb.firebaseio.com/", None)
+
+def isAuthorized(apiKey):
+  all_data = db.child('data').get()
+  for dat in all_data.each():
+    if dat.key() == apiKey:
+      return True
+  return False
+
 
 @app.route('/')
 def index():
@@ -19,9 +45,50 @@ def index():
 def say_hello():
   return 'Hello from Server'
 
+@app.route('/getApiKey', methods=['POST'])
+def getApiKey():
+
+  if request.method == 'POST':
+
+    apiKey = str(uuid.uuid4())
+
+    d = request.get_json()
+    data = {
+      'orgName': d['orgName'],
+      'industry': d['industry'],
+      'fullName': d['fullName'],
+      'email': d['email'],
+      'ip': request.remote_addr
+    }
+
+    db.child('data').child(apiKey).set(data)
+
+    all_data = db.child('data').get()
+    for dat in all_data.each():
+      print(dat.key())
+
+    return apiKey
+
+@app.route('/revoke', methods=['POST'])
+def revoke():
+  if request.method == 'POST':
+    db.child("data").child(request.get_json()['apiKey']).remove()
+    return 1
+
 @app.route('/cc_payoff', methods=['POST'])
 def cc_payoff():
+
+  if(not isAuthorized(request.headers['apiKey'])):
+      return 'Not Authorized'
+
   if request.method == 'POST':
+
+    id = uuid.uuid4()
+    eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
+    data = request.get_json();
+    data.update({'timestamp': eventid})
+    db.child('requests').child(id).set(data)
+
     #d = simplejson.loads(request.POST.get('data'))
     d = request.get_json()
     #print(d)
@@ -29,11 +96,27 @@ def cc_payoff():
     cc_interest_rate = d['CC Interest Rate']
     months = d['Months']
     json_result = BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
+
+
+    res = json.loads(json_result);
+    res.update({'timestamp': eventid})
+    db.child('response').child(id).set(res)
     return json.dumps(json_result)
 
 @app.route('/simple_savings_calc', methods=['POST'])
 def simple_savings_calc():
+
+  if(not isAuthorized(request.headers['apiKey'])):
+    return 'Not Authorized'
+
   if request.method == 'POST':
+
+    id = uuid.uuid4()
+    eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
+    data = request.get_json();
+    data.update({'timestamp': eventid})
+    db.child('requests').child(id).set(data)
+
     #d = simplejson.loads(request.POST.get('data'))
     d = request.get_json()
     #print(d)
@@ -42,11 +125,25 @@ def simple_savings_calc():
     time_period = d['Time Period']
     interest_rate = d['Interest Rate']
     json_result = BankFunctions.simple_savings_calc(initial_deposit, monthly_contrib, time_period, interest_rate)
+
+    res = json.loads(json_result);
+    res.update({'timestamp': eventid})
+    db.child('response').child(id).set(res)
     return json.dumps(json_result)
 
 @app.route('/cc_min_payment_calc', methods=['POST'])
 def cc_min_payment_calc():
+
+  if(not isAuthorized(request.headers['apiKey'])):
+    return 'Not Authorized'
+
   if request.method == 'POST':
+
+    id = uuid.uuid4()
+    eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
+    data = request.get_json();
+    data.update({'timestamp': eventid})
+    db.child('requests').child(id).set(data)
     #d = simplejson.loads(request.POST.get('data'))
     d = request.get_json()
     #print(d)
@@ -54,12 +151,26 @@ def cc_min_payment_calc():
     cc_interest_rate = d['CC Interest Rate']
     min_payment_percent = d['Minimum Payment Percent']
     json_result = BankFunctions.cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
+
+    res = json.loads(json_result);
+    res.update({'timestamp': eventid})
+    db.child('response').child(id).set(res)
     return json.dumps(json_result)
 
 
 @app.route('/mortgage_calc', methods=['POST'])
 def mortgage_calc():
+
+  if(not isAuthorized(request.headers['apiKey'])):
+    return 'Not Authorized'
+
   if request.method == 'POST':
+
+    id = uuid.uuid4()
+    eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
+    data = request.get_json();
+    data.update({'timestamp': eventid})
+    db.child('requests').child(id).set(data)
     #d = simplejson.loads(request.POST.get('data'))
     d = request.get_json()
     #print(d)
@@ -68,12 +179,26 @@ def mortgage_calc():
     loan_length = d['Loan Length']
     interest_rate = d['Interest Rate']
     json_result = BankFunctions.mortgage_calc(home_price, down_payment, loan_length, interest_rate)
+
+    res = json.loads(json_result);
+    res.update({'timestamp': eventid})
+    db.child('response').child(id).set(res)
     return json.dumps(json_result)
 
 
 @app.route('/cdCalc', methods=['POST'])
 def cdCalc():
+
+  if(not isAuthorized(request.headers['apiKey'])):
+    return 'Not Authorized'
+
   if request.method == 'POST':
+
+    id = uuid.uuid4()
+    eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
+    data = request.get_json();
+    data.update({'timestamp': eventid})
+    db.child('requests').child(id).set(data)
     #d = simplejson.loads(request.POST.get('data'))
     d = request.get_json()
     #print(d)
@@ -81,6 +206,10 @@ def cdCalc():
     year_Period = d['Year Period']
     interest_Rate = d['Interest Rate']
     json_result = BankFunctions.cdCalc(init_Deposit, year_Period, interest_Rate)
+
+    res = json.loads(json_result);
+    res.update({'timestamp': eventid})
+    db.child('response').child(id).set(res)
     return json.dumps(json_result)
     
 # @app.route('/')
