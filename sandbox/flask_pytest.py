@@ -12,6 +12,7 @@ from requests_mock_flask import add_flask_app_to_mock
 from app import app
 app.testing = True
 url = 'http://127.0.0.1:5000' # The root url of the flask app
+apiKey = '3d065b67-f166-4630-b1c9-cb5fff86ab30'
 
 
 #mock
@@ -32,7 +33,7 @@ def test_fake_cc_payoff_implementation():
                 "Months": 7
             }
     sendJson = json.dumps(dict2)
-    headers = {'Content-type': 'application/json', 'apiKey': '3d065b67-f166-4630-b1c9-cb5fff86ab30'}
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     resDict = dict()
     resDict['Monthly Payment'] = 223.15
     resDict['Total Principal Paid'] = 1542.0
