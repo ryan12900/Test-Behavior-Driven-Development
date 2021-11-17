@@ -72,6 +72,54 @@ def test_mock_cc_payoff_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CC Payoff endpoint")
 
+#mock
+def test_cc_payoff_invalid_request():
+    s = soundex.getInstance()
+    dict2 = {
+                "CC Balance": 1542.00,
+                "CC Interest Rate": 5.2,
+                "Months": 7
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
+    with app.test_client() as client:
+        response = client.put(url+'/cc_payoff',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 405
+        print("Mock test invalid request for CC Payoff")
+
+#mock
+def test_cc_payoff_no_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "CC Balance": 1542.00,
+                "CC Interest Rate": 5.2,
+                "Months": 7
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json'}
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/cc_payoff',  data=sendJson, content_type='application/json', headers=headers)
+            assert False
+        except KeyError:
+            assert True
+        print("Mock test no API key for CC Payoff")
+
+#mock
+def test_cc_payoff_invalid_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "CC Balance": 1542.00,
+                "CC Interest Rate": 5.2,
+                "Months": 7
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': 'invalid'}
+    with app.test_client() as client:
+        response = client.post(url+'/cc_payoff',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 401
+        print("Mock test invalid API key for CC Payoff")
+
 #fake
 #happy-path
 def test_fake_simple_savings_calc_implementation():
@@ -123,6 +171,57 @@ def test_mock_simple_savings_calc_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the Simple Savings Calc endpoint")
 
+#mock
+def test_simple_savings_calc_invalid_request():
+    s = soundex.getInstance()
+    dict2 = {
+                "Initial Deposit": 1000,
+                "Monthly Contribution": 100,
+                "Time Period": 1.5,
+                "Interest Rate": 10
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
+    with app.test_client() as client:
+        response = client.put(url+'/simple_savings_calc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 405
+        print("Mock test invalid request for Simple Savings Calc")
+
+#mock
+def test_simple_savings_calc_no_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "Initial Deposit": 1000,
+                "Monthly Contribution": 100,
+                "Time Period": 1.5,
+                "Interest Rate": 10
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json'}
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/simple_savings_calc',  data=sendJson, content_type='application/json', headers=headers)
+            assert False
+        except KeyError:
+            assert True
+        print("Mock test no API key for Simple Savings Calc")
+
+#mock
+def test_simple_savings_calc_invalid_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "Initial Deposit": 1000,
+                "Monthly Contribution": 100,
+                "Time Period": 1.5,
+                "Interest Rate": 10
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': 'invalid'}
+    with app.test_client() as client:
+        response = client.post(url+'/simple_savings_calc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 401
+        print("Mock test invalid API key for Simple Savings Calc")
+
 #fake
 #happy-path
 def test_fake_cc_min_payment_calc_implementation():
@@ -171,6 +270,54 @@ def test_mock_cc_min_payment_calc_connection():
         response = client.post(url+'/cc_min_payment_calc',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CC Min Payment Calc endpoint")
+
+#mock
+def test_cc_min_payment_calc_invalid_request():
+    s = soundex.getInstance()
+    dict2 = {
+                "CC Balance": 5000,
+                "CC Interest Rate": 6,
+                "Minimum Payment Percent": 9
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
+    with app.test_client() as client:
+        response = client.put(url+'/cc_min_payment_calc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 405
+        print("Mock test invalid request for CC Min Payment Calc")
+
+#mock
+def test_cc_min_payment_calc_no_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "CC Balance": 5000,
+                "CC Interest Rate": 6,
+                "Minimum Payment Percent": 9
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json'}
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/cc_min_payment_calc',  data=sendJson, content_type='application/json', headers=headers)
+            assert False
+        except KeyError:
+            assert True
+        print("Mock test no API key for CC Min Payment Calc")
+
+#mock
+def test_cc_min_payment_calc_invalid_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "CC Balance": 5000,
+                "CC Interest Rate": 6,
+                "Minimum Payment Percent": 9
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': 'invalid'}
+    with app.test_client() as client:
+        response = client.post(url+'/cc_min_payment_calc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 401
+        print("Mock test invalid API key for CC Min Payment Calc")
 
 #fake
 #happy-path
@@ -224,6 +371,57 @@ def test_mock_mortgage_calc_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the Mortgage Calc endpoint")
 
+#mock
+def test_mortgage_calc_invalid_request():
+    s = soundex.getInstance()
+    dict2 = {
+                "Home Price": 480000,
+                "Down Payment":  50,
+                "Loan Length": 30,
+                "Interest Rate": 10
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
+    with app.test_client() as client:
+        response = client.put(url+'/mortgage_calc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 405
+        print("Mock test invalid request for Mortgage Calc")
+
+#mock
+def test_mortgage_calc_no_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "Home Price": 480000,
+                "Down Payment":  50,
+                "Loan Length": 30,
+                "Interest Rate": 10
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json'}
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/mortgage_calc',  data=sendJson, content_type='application/json', headers=headers)
+            assert False
+        except KeyError:
+            assert True
+        print("Mock test no API key for Mortgage Calc")
+
+#mock
+def test_mortgage_calc_invalid_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "Home Price": 480000,
+                "Down Payment":  50,
+                "Loan Length": 30,
+                "Interest Rate": 10
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': 'invalid'}
+    with app.test_client() as client:
+        response = client.post(url+'/mortgage_calc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 401
+        print("Mock test invalid API key for Mortgage Calc")
+
 #fake
 #happy-path
 def test_fake_cdCalc_implementation():
@@ -271,3 +469,51 @@ def test_mock_cdCalc_connection():
         response = client.post(url+'/cdCalc',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CD Calc endpoint")
+
+#mock
+def test_cdCalc_invalid_request():
+    s = soundex.getInstance()
+    dict2 = {
+                "Init Deposit": 2500,
+                "Year Period": 3.5,
+                "Interest Rate": 3.5
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
+    with app.test_client() as client:
+        response = client.put(url+'/cdCalc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 405
+        print("Mock test invalid request for CD Calc")
+
+#mock
+def test_cdCalc_no_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "Init Deposit": 2500,
+                "Year Period": 3.5,
+                "Interest Rate": 3.5
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json'}
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/cdCalc',  data=sendJson, content_type='application/json', headers=headers)
+            assert False
+        except KeyError:
+            assert True
+        print("Mock test no API key for CD Calc")
+
+#mock
+def test_cdCalc_invalid_key():
+    s = soundex.getInstance()
+    dict2 = {
+                "Init Deposit": 2500,
+                "Year Period": 3.5,
+                "Interest Rate": 3.5
+            }
+    sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': 'invalid'}
+    with app.test_client() as client:
+        response = client.post(url+'/cdCalc',  data=sendJson, content_type='application/json', headers=headers)
+        assert response.status_code == 401
+        print("Mock test invalid API key for CD Calc")
