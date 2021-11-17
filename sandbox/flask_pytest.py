@@ -42,7 +42,7 @@ def test_fake_cc_payoff_implementation():
 
     with app.test_client() as client:
             # send data as POST form to endpoint
-            response = client.post(url+'/cc_payoff', data=sendJson, content_type='application/json')
+            response = client.post(url+'/cc_payoff', data=sendJson, content_type='application/json', headers=headers)
             # response = client.post(
             #     url+'/cc_payoff',
             #     json=dict2,
@@ -66,8 +66,9 @@ def test_mock_cc_payoff_connection():
                 "Months": 7
             }
     sendJson = json.dumps(dict2)
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     with app.test_client() as client:
-        response = client.post(url+'/cc_payoff', data=sendJson, content_type='application/json')
+        response = client.post(url+'/cc_payoff',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CC Payoff endpoint")
 
@@ -82,7 +83,7 @@ def test_fake_simple_savings_calc_implementation():
                 "Interest Rate": 10
             }
     sendJson = json.dumps(dict2)
-    headers = {'Content-type': 'application/json'}
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     resDict = dict()
     resDict['Total Savings balance'] = 3020.00   
     resDict['Total Contributions'] = 1800.0
@@ -91,7 +92,7 @@ def test_fake_simple_savings_calc_implementation():
 
     with app.test_client() as client:
             # send data as POST form to endpoint
-            response = client.post(url+'/simple_savings_calc', data=sendJson, content_type='application/json')
+            response = client.post(url+'/simple_savings_calc',  data=sendJson, content_type='application/json', headers=headers)
             # response = client.post(
             #     url+'/cc_payoff',
             #     json=dict2,
@@ -108,6 +109,7 @@ def test_fake_simple_savings_calc_implementation():
 
 #mock
 def test_mock_simple_savings_calc_connection():
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     s = soundex.getInstance()
     dict2 = {
                 "Initial Deposit": 1000,
@@ -117,7 +119,7 @@ def test_mock_simple_savings_calc_connection():
             }
     sendJson = json.dumps(dict2)
     with app.test_client() as client:
-        response = client.post(url+'/simple_savings_calc', data=sendJson, content_type='application/json')
+        response = client.post(url+'/simple_savings_calc',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the Simple Savings Calc endpoint")
 
@@ -131,7 +133,7 @@ def test_fake_cc_min_payment_calc_implementation():
                 "Minimum Payment Percent": 9
             }
     sendJson = json.dumps(dict2)
-    headers = {'Content-type': 'application/json'}
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     resDict = dict()
     resDict['Monthly Payment'] = 450.00   
     resDict['Months'] = 49
@@ -140,7 +142,7 @@ def test_fake_cc_min_payment_calc_implementation():
 
     with app.test_client() as client:
             # send data as POST form to endpoint
-            response = client.post(url+'/cc_min_payment_calc', data=sendJson, content_type='application/json')
+            response = client.post(url+'/cc_min_payment_calc',  data=sendJson, content_type='application/json', headers=headers)
             # response = client.post(
             #     url+'/cc_payoff',
             #     json=dict2,
@@ -157,6 +159,7 @@ def test_fake_cc_min_payment_calc_implementation():
 
 #mock
 def test_mock_cc_min_payment_calc_connection():
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     s = soundex.getInstance()
     dict2 = {
                 "CC Balance": 5000,
@@ -165,7 +168,7 @@ def test_mock_cc_min_payment_calc_connection():
             }
     sendJson = json.dumps(dict2)
     with app.test_client() as client:
-        response = client.post(url+'/cc_min_payment_calc', data=sendJson, content_type='application/json')
+        response = client.post(url+'/cc_min_payment_calc',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CC Min Payment Calc endpoint")
 
@@ -180,7 +183,7 @@ def test_fake_mortgage_calc_implementation():
                 "Interest Rate": 10
             }
     sendJson = json.dumps(dict2)
-    headers = {'Content-type': 'application/json'}
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     resDict = dict()
     resDict['Monthly Payment'] = 2106.17
     resDict['Amount Paid in Interest'] = 518221.84
@@ -190,7 +193,7 @@ def test_fake_mortgage_calc_implementation():
 
     with app.test_client() as client:
             # send data as POST form to endpoint
-            response = client.post(url+'/mortgage_calc', data=sendJson, content_type='application/json')
+            response = client.post(url+'/mortgage_calc',  data=sendJson, content_type='application/json', headers=headers)
             # response = client.post(
             #     url+'/cc_payoff',
             #     json=dict2,
@@ -207,6 +210,7 @@ def test_fake_mortgage_calc_implementation():
 
 #mock
 def test_mock_mortgage_calc_connection():
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     s = soundex.getInstance()
     dict2 = {
                 "Home Price": 480000,
@@ -216,7 +220,7 @@ def test_mock_mortgage_calc_connection():
             }
     sendJson = json.dumps(dict2)
     with app.test_client() as client:
-        response = client.post(url+'/mortgage_calc', data=sendJson, content_type='application/json')
+        response = client.post(url+'/mortgage_calc',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the Mortgage Calc endpoint")
 
@@ -230,7 +234,7 @@ def test_fake_cdCalc_implementation():
                 "Interest Rate": 3.5
             }
     sendJson = json.dumps(dict2)
-    headers = {'Content-type': 'application/json'}
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     resDict = dict()
     resDict['Total Balance'] = 2819.88
     resDict['Total Interest'] = 319.88
@@ -238,7 +242,7 @@ def test_fake_cdCalc_implementation():
 
     with app.test_client() as client:
             # send data as POST form to endpoint
-            response = client.post(url+'/cdCalc', data=sendJson, content_type='application/json')
+            response = client.post(url+'/cdCalc',  data=sendJson, content_type='application/json', headers=headers)
             # response = client.post(
             #     url+'/cc_payoff',
             #     json=dict2,
@@ -255,6 +259,7 @@ def test_fake_cdCalc_implementation():
 
 #mock
 def test_mock_cdCalc_connection():
+    headers = {'Content-type': 'application/json', 'apiKey': apiKey}
     s = soundex.getInstance()
     dict2 = {
                 "Init Deposit": 2500,
@@ -263,6 +268,6 @@ def test_mock_cdCalc_connection():
             }
     sendJson = json.dumps(dict2)
     with app.test_client() as client:
-        response = client.post(url+'/cdCalc', data=sendJson, content_type='application/json')
+        response = client.post(url+'/cdCalc',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CD Calc endpoint")
