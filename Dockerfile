@@ -14,9 +14,11 @@
 # CMD ["python3", "sandbox/app.py"] 
 
 FROM python:3.8-alpine
-WORKDIR /Test-Behavior-Driven-Development
+WORKDIR /sandbox
 #ADD ./Test-Behavior-Driven-Development
 COPY /sandbox/requirements.txt sandbox/
+COPY /sandbox/app.py sandbox/
+COPY /sandbox/BankFunctions.py sandbox/
 ENV PORT 8080
 ENV HOST 0.0.0.0
 RUN apk update

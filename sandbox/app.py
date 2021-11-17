@@ -16,8 +16,6 @@ os.environ['FLASK_APP'] = 'app.py'
 
 app = Flask(__name__)
 
-if __name__ == '__main__':
-   app.run(host='0.0.0.0',port=8080)
 
 config = {
   "apiKey": "AIzaSyCqTPcsdlnkZQzAvMrsWajGobVVAcRiKLg",
@@ -245,3 +243,7 @@ def cdCalc():
 #   elif request.method == 'GET':
 #     #serve login page
 #     serve_login_page() 
+
+
+if __name__ == '__main__':
+   app.run(host='0.0.0.0',port=8080)
