@@ -534,9 +534,13 @@ def test_mock_cdCalc_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CD Calc endpoint")
 
+#We added integration tests to test our API authentication with the database in order to make sure the database and HTTP requests were functioning
+#properly together and to demonstrate that the API authentication process was working as expected. We decided to create Mocks for the integration tests
+#since we want to be able to simulate multiple aspects of the application to see if their integration is working as expected.
+
 #The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
 #that the test did not rely on an existing connection, and would be able to be run on a mock connection.
-#mock
+#mock INTEGRATION TEST
 def test_cdCalc_invalid_request():
     s = soundex.getInstance()
     dict2 = {
@@ -553,7 +557,7 @@ def test_cdCalc_invalid_request():
 
 #The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
 #that the test did not rely on an existing connection, and would be able to be run on a mock connection.
-#mock
+#mock INTEGRATION TEST
 def test_cdCalc_no_key():
     s = soundex.getInstance()
     dict2 = {
@@ -573,7 +577,7 @@ def test_cdCalc_no_key():
 
 #The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
 #that the test did not rely on an existing connection, and would be able to be run on a mock connection.
-#mock
+#mock INTEGRATION TEST
 def test_cdCalc_invalid_key():
     s = soundex.getInstance()
     dict2 = {
@@ -588,7 +592,7 @@ def test_cdCalc_invalid_key():
         assert response.status_code == 401
         print("Mock test invalid API key for CD Calc")
 
-# mock
+# mock INTEGRATION TEST
 def test_api_key_and_revoke_key():
     s = soundex.getInstance()
     dict2 = {
