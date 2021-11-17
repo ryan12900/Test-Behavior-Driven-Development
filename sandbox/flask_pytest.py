@@ -14,7 +14,12 @@ app.testing = True
 url = 'http://127.0.0.1:5000' # The root url of the flask app
 apiKey = '3d065b67-f166-4630-b1c9-cb5fff86ab30'
 
+#These initial tests are the unit tests and test doubles for the http responses for each endpoint.
+#All of the functions are tested for, as well as the API revoke endpoint and the API get endpoint.
 
+
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_index_page():
     with app.test_client() as client:
@@ -23,8 +28,13 @@ def test_index_page():
         print("Mock test to test see if the flask app is running")
 
 
+#The reason for creating a fake test double was to ensure the properly functionality of the Bank Functions themselves, by creating fake
+#data and replicating a fake POST request, we are able to simulate the expected functionality of each of the functions, and evaluate the 
+#expected output.
 #fake
 #happy-path
+#This happy path test case demonstrates what an ideal test case and result would be, with the expected input and output that one would
+#expect in a normal and properly functioning use case.
 def test_fake_cc_payoff_implementation():
     s = soundex.getInstance()
     dict2 = {
@@ -57,6 +67,8 @@ def test_fake_cc_payoff_implementation():
             print("Fake test to see if proper output is displayed from CC Payoff API")
             #assert response.status_code == 200 and s.soundex(str(response.data.decode('UTF-8'))) == s.soundex(str(json.dumps(resDict)))
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mock_cc_payoff_connection():
     s = soundex.getInstance()
@@ -72,6 +84,8 @@ def test_mock_cc_payoff_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CC Payoff endpoint")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cc_payoff_invalid_request():
     s = soundex.getInstance()
@@ -87,6 +101,8 @@ def test_cc_payoff_invalid_request():
         assert response.status_code == 405
         print("Mock test invalid request for CC Payoff")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cc_payoff_no_key():
     s = soundex.getInstance()
@@ -105,6 +121,8 @@ def test_cc_payoff_no_key():
             assert True
         print("Mock test no API key for CC Payoff")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cc_payoff_invalid_key():
     s = soundex.getInstance()
@@ -120,6 +138,11 @@ def test_cc_payoff_invalid_key():
         assert response.status_code == 401
         print("Mock test invalid API key for CC Payoff")
 
+#The reason for creating a fake test double was to ensure the properly functionality of the Bank Functions themselves, by creating fake
+#data and replicating a fake POST request, we are able to simulate the expected functionality of each of the functions, and evaluate the 
+#expected output.
+#This happy path test case demonstrates what an ideal test case and result would be, with the expected input and output that one would
+#expect in a normal and properly functioning use case.
 #fake
 #happy-path
 def test_fake_simple_savings_calc_implementation():
@@ -155,6 +178,8 @@ def test_fake_simple_savings_calc_implementation():
             print("Fake test to see if proper output is displayed from Simple Savings Calc API")
             #assert response.status_code == 200 and s.soundex(str(response.data.decode('UTF-8'))) == s.soundex(str(json.dumps(resDict)))
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mock_simple_savings_calc_connection():
     headers = {'Content-type': 'application/json', 'apiKey': apiKey}
@@ -171,6 +196,8 @@ def test_mock_simple_savings_calc_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the Simple Savings Calc endpoint")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_simple_savings_calc_invalid_request():
     s = soundex.getInstance()
@@ -187,6 +214,8 @@ def test_simple_savings_calc_invalid_request():
         assert response.status_code == 405
         print("Mock test invalid request for Simple Savings Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_simple_savings_calc_no_key():
     s = soundex.getInstance()
@@ -206,6 +235,8 @@ def test_simple_savings_calc_no_key():
             assert True
         print("Mock test no API key for Simple Savings Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_simple_savings_calc_invalid_key():
     s = soundex.getInstance()
@@ -222,6 +253,11 @@ def test_simple_savings_calc_invalid_key():
         assert response.status_code == 401
         print("Mock test invalid API key for Simple Savings Calc")
 
+#The reason for creating a fake test double was to ensure the properly functionality of the Bank Functions themselves, by creating fake
+#data and replicating a fake POST request, we are able to simulate the expected functionality of each of the functions, and evaluate the 
+#expected output.
+#This happy path test case demonstrates what an ideal test case and result would be, with the expected input and output that one would
+#expect in a normal and properly functioning use case.
 #fake
 #happy-path
 def test_fake_cc_min_payment_calc_implementation():
@@ -256,6 +292,8 @@ def test_fake_cc_min_payment_calc_implementation():
             print("Fake test to see if proper output is displayed from CC Min Payment Calc API")
             #assert response.status_code == 200 and s.soundex(str(response.data.decode('UTF-8'))) == s.soundex(str(json.dumps(resDict)))
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mock_cc_min_payment_calc_connection():
     headers = {'Content-type': 'application/json', 'apiKey': apiKey}
@@ -271,6 +309,8 @@ def test_mock_cc_min_payment_calc_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CC Min Payment Calc endpoint")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cc_min_payment_calc_invalid_request():
     s = soundex.getInstance()
@@ -286,6 +326,8 @@ def test_cc_min_payment_calc_invalid_request():
         assert response.status_code == 405
         print("Mock test invalid request for CC Min Payment Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cc_min_payment_calc_no_key():
     s = soundex.getInstance()
@@ -304,6 +346,8 @@ def test_cc_min_payment_calc_no_key():
             assert True
         print("Mock test no API key for CC Min Payment Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cc_min_payment_calc_invalid_key():
     s = soundex.getInstance()
@@ -319,6 +363,11 @@ def test_cc_min_payment_calc_invalid_key():
         assert response.status_code == 401
         print("Mock test invalid API key for CC Min Payment Calc")
 
+#The reason for creating a fake test double was to ensure the properly functionality of the Bank Functions themselves, by creating fake
+#data and replicating a fake POST request, we are able to simulate the expected functionality of each of the functions, and evaluate the 
+#expected output.
+#This happy path test case demonstrates what an ideal test case and result would be, with the expected input and output that one would
+#expect in a normal and properly functioning use case.
 #fake
 #happy-path
 def test_fake_mortgage_calc_implementation():
@@ -355,6 +404,8 @@ def test_fake_mortgage_calc_implementation():
             print("Fake test to see if proper output is displayed from Mortgage Calc API")
             #assert response.status_code == 200 and s.soundex(str(response.data.decode('UTF-8'))) == s.soundex(str(json.dumps(resDict)))
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mock_mortgage_calc_connection():
     headers = {'Content-type': 'application/json', 'apiKey': apiKey}
@@ -371,6 +422,8 @@ def test_mock_mortgage_calc_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the Mortgage Calc endpoint")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mortgage_calc_invalid_request():
     s = soundex.getInstance()
@@ -387,6 +440,8 @@ def test_mortgage_calc_invalid_request():
         assert response.status_code == 405
         print("Mock test invalid request for Mortgage Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mortgage_calc_no_key():
     s = soundex.getInstance()
@@ -406,6 +461,8 @@ def test_mortgage_calc_no_key():
             assert True
         print("Mock test no API key for Mortgage Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mortgage_calc_invalid_key():
     s = soundex.getInstance()
@@ -422,6 +479,11 @@ def test_mortgage_calc_invalid_key():
         assert response.status_code == 401
         print("Mock test invalid API key for Mortgage Calc")
 
+#The reason for creating a fake test double was to ensure the properly functionality of the Bank Functions themselves, by creating fake
+#data and replicating a fake POST request, we are able to simulate the expected functionality of each of the functions, and evaluate the 
+#expected output.
+#This happy path test case demonstrates what an ideal test case and result would be, with the expected input and output that one would
+#expect in a normal and properly functioning use case.
 #fake
 #happy-path
 def test_fake_cdCalc_implementation():
@@ -455,6 +517,8 @@ def test_fake_cdCalc_implementation():
             print("Fake test to see if proper output is displayed from CD Calc API")
             #assert response.status_code == 200 and s.soundex(str(response.data.decode('UTF-8'))) == s.soundex(str(json.dumps(resDict)))
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_mock_cdCalc_connection():
     headers = {'Content-type': 'application/json', 'apiKey': apiKey}
@@ -470,6 +534,8 @@ def test_mock_cdCalc_connection():
         assert response.status_code == 200
         print("Mock test to test the connection and response code for the CD Calc endpoint")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cdCalc_invalid_request():
     s = soundex.getInstance()
@@ -485,6 +551,8 @@ def test_cdCalc_invalid_request():
         assert response.status_code == 405
         print("Mock test invalid request for CD Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cdCalc_no_key():
     s = soundex.getInstance()
@@ -503,6 +571,8 @@ def test_cdCalc_no_key():
             assert True
         print("Mock test no API key for CD Calc")
 
+#The reason for creating a mock was to ensure the correct code implementation for HTTP requests was done properly and to ensure
+#that the test did not rely on an existing connection, and would be able to be run on a mock connection.
 #mock
 def test_cdCalc_invalid_key():
     s = soundex.getInstance()
