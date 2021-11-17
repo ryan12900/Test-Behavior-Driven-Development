@@ -79,7 +79,7 @@ def revoke():
 def cc_payoff():
 
   if(not isAuthorized(request.headers['apiKey'])):
-      return 'Not Authorized'
+      return 'Not Authorized', 401
 
   if request.method == 'POST':
 
@@ -107,7 +107,7 @@ def cc_payoff():
 def simple_savings_calc():
 
   if(not isAuthorized(request.headers['apiKey'])):
-    return 'Not Authorized'
+    return 'Not Authorized', 401
 
   if request.method == 'POST':
 
@@ -135,7 +135,7 @@ def simple_savings_calc():
 def cc_min_payment_calc():
 
   if(not isAuthorized(request.headers['apiKey'])):
-    return 'Not Authorized'
+    return 'Not Authorized', 401
 
   if request.method == 'POST':
 
@@ -162,7 +162,7 @@ def cc_min_payment_calc():
 def mortgage_calc():
 
   if(not isAuthorized(request.headers['apiKey'])):
-    return 'Not Authorized'
+    return 'Not Authorized', 401
 
   if request.method == 'POST':
 
@@ -190,7 +190,7 @@ def mortgage_calc():
 def cdCalc():
 
   if(not isAuthorized(request.headers['apiKey'])):
-    return 'Not Authorized'
+    return 'Not Authorized', 401
 
   if request.method == 'POST':
 
