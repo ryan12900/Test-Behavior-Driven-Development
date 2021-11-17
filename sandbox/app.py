@@ -64,8 +64,8 @@ def getApiKey():
     db.child('data').child(apiKey).set(data)
 
     all_data = db.child('data').get()
-    for dat in all_data.each():
-      print(dat.key())
+    # for dat in all_data.each():
+    #   print(dat.key())
 
     return apiKey
 
@@ -73,7 +73,7 @@ def getApiKey():
 def revoke():
   if request.method == 'POST':
     db.child("data").child(request.get_json()['apiKey']).remove()
-    return 1
+    return 'Revoked'
 
 @app.route('/cc_payoff', methods=['POST'])
 def cc_payoff():

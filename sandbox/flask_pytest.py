@@ -517,3 +517,25 @@ def test_cdCalc_invalid_key():
         response = client.post(url+'/cdCalc',  data=sendJson, content_type='application/json', headers=headers)
         assert response.status_code == 401
         print("Mock test invalid API key for CD Calc")
+
+# mock
+def test_api_key_and_revoke_key():
+    s = soundex.getInstance()
+    dict2 = {
+                'orgName': 'name',
+                'industry': 'industry',
+                'fullName': 'bing bong',
+                'email': 'email',
+                'ip': '127.0.0.1'
+            }
+    sendJson = json.dumps(dict2)
+    with app.test_client() as client:
+        response = client.post(url+'/getApiKey', data=sendJson, content_type='application/json')
+        assert response.status_code == 200
+        key = str(response.data.decode('UTF-8').replace("\\",""))
+        dict3 = { 'apiKey': key }
+        sendJson2 = json.dumps(dict3)
+        revokeResponse = client.post(url+'/revoke', data=sendJson2, content_type='application/json')
+        assert revokeResponse.status_code == 200
+        print("Mock test API Key generation and revoke")
+
