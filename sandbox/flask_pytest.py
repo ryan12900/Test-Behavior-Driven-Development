@@ -6,6 +6,7 @@ import flask
 import responses
 import unittest
 import soundex
+from firebase import Firebase
 from configparser import ConfigParser
 
 from requests_mock_flask import add_flask_app_to_mock
@@ -592,6 +593,20 @@ def test_cdCalc_invalid_key():
         assert response.status_code == 401
         print("Mock test invalid API key for CD Calc")
 
+config = {
+  "apiKey": "AIzaSyCqTPcsdlnkZQzAvMrsWajGobVVAcRiKLg",
+  "authDomain": "softwaretestingproj.firebaseapp.com",
+  "databaseURL": "https://softwaretestingproj-default-rtdb.firebaseio.com/",
+  "storageBucket": "softwaretestingproj.appspot.com"
+}
+
+firebase = Firebase(config)
+
+db = firebase.database()
+
+
+#INTEGRATION TESTS WITH FIREBASE DATABSE
+
 # mock INTEGRATION TEST
 def test_api_key_and_revoke_key():
     s = soundex.getInstance()
@@ -611,5 +626,35 @@ def test_api_key_and_revoke_key():
         sendJson2 = json.dumps(dict3)
         revokeResponse = client.post(url+'/revoke', data=sendJson2, content_type='application/json')
         assert revokeResponse.status_code == 200
-        print("Mock test API Key generation and revoke")
+        print("Mock integration test API Key generation and revoke")
 
+#edge-case INTEGRATION TEST
+def test_deletion_of_invalid_api():
+    try:
+        db.child("data").child(['fakeApiKey']).remove()
+    except requests.HTTPError:
+        print("Edge-case integration test to check if proper error is received when trying to delete an invalid token")
+        assert True
+        return
+    assert False
+
+#edge-case INTEGRATION TEST
+def test_fake_database():
+    config2 = {
+    "apiKey": "AIzaSyCqTPcsdlnkZQzAvMrsWajGobVVAcRiKLg2",
+    "authDomain": "softwaretestingproj.firebaseapp.com2",
+    "databaseURL": "https://softwaretestingproj-default-rtdb.firebaseio2.com/",
+    "storageBucket": "softwaretestingproj2.appspot.com"
+    }
+
+    firebase2= Firebase(config2)
+
+    db2 = firebase2.database()
+    try:
+        fakeData = db2.child('data').get()
+    except requests.ConnectionError:
+        print("Edge-case integration test to check if proper error is received when trying to connect to an invalid database")
+        assert True
+        return
+    assert False
+    #db.child('data').child(1).set(2)
