@@ -30,8 +30,13 @@ To run the tests, navigate  to the same \Test-Behavior-Driven-Development\sandbo
 
 If the Docker server is not running properly on the host, install all the required dependencies by running "pip install -r requirements.txt" in the \Test-Behavior-Driven-Development\sandbox folder, then run the command "flask run".
 
+
+
 # All Test Suites Passing
 ![image](https://user-images.githubusercontent.com/44078719/142134691-98a263c1-b93b-4d96-9ca9-c54f1f6f9d3f.png)
+
+# Additional Integration Tests
+![image](https://user-images.githubusercontent.com/44078719/142354009-03b6f84b-c8bc-42f8-9762-2a9b3096a188.png)
 
 
 # Naming and Organizational Details
