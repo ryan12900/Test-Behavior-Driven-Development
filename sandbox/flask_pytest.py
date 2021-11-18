@@ -607,6 +607,8 @@ db = firebase.database()
 
 #INTEGRATION TESTS WITH FIREBASE DATABSE
 
+
+
 # mock INTEGRATION TEST
 def test_api_key_and_revoke_key():
     s = soundex.getInstance()
@@ -658,3 +660,79 @@ def test_fake_database():
         return
     assert False
     #db.child('data').child(1).set(2)
+
+#edge-case INTEGRATION TEST
+def test_missing_org():
+    s = soundex.getInstance()
+    dict2 = {
+                'industry': 'industry',
+                'fullName': 'bing bong',
+                'email': 'email',
+                'ip': '127.0.0.1'
+            }
+    sendJson = json.dumps(dict2)
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/getApiKey', data=sendJson, content_type='application/json')
+        except KeyError:
+            print("Edge-case integration test to check if proper error is received if client does not have orgName key in body")
+            assert True
+            return
+        assert False
+
+#edge-case INTEGRATION TEST
+def test_missing_industry():
+    s = soundex.getInstance()
+    dict2 = {
+        'orgName': 'name',
+        'fullName': 'bing bong',
+        'email': 'email',
+        'ip': '127.0.0.1'
+    }
+    sendJson = json.dumps(dict2)
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/getApiKey', data=sendJson, content_type='application/json')
+        except KeyError:
+            print("Edge-case integration test to check if proper error is received if client does not have industry key in body")
+            assert True
+            return
+        assert False
+
+#edge-case INTEGRATION TEST
+def test_missing_fullName():
+    s = soundex.getInstance()
+    dict2 = {
+        'orgName': 'name',
+        'industry': 'industry',
+        'email': 'email',
+        'ip': '127.0.0.1'
+    }
+    sendJson = json.dumps(dict2)
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/getApiKey', data=sendJson, content_type='application/json')
+        except KeyError:
+            print("Edge-case integration test to check if proper error is received if client does not have fullName key in body")
+            assert True
+            return
+        assert False
+
+#edge-case INTEGRATION TEST
+def test_missing_email():
+    s = soundex.getInstance()
+    dict2 = {
+        'orgName': 'name',
+        'industry': 'industry',
+        'fullName': 'bing bong',
+        'ip': '127.0.0.1'
+    }
+    sendJson = json.dumps(dict2)
+    with app.test_client() as client:
+        try:
+            response = client.post(url+'/getApiKey', data=sendJson, content_type='application/json')
+        except KeyError:
+            print("Edge-case integration test to check if proper error is received if client does not have email key in body")
+            assert True
+            return
+        assert False
