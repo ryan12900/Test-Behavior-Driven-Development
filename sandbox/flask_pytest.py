@@ -8,6 +8,8 @@ import unittest
 import soundex
 from firebase import Firebase
 from configparser import ConfigParser
+import mock
+from mock import patch
 
 from requests_mock_flask import add_flask_app_to_mock
 from app import app
@@ -658,3 +660,20 @@ def test_fake_database():
         return
     assert False
     #db.child('data').child(1).set(2)
+
+#fake INTEGRATION TEST
+def test_connection_success_database():
+    config2 = {
+    "apiKey": "AIzaSyCqTPcsdlnkZQzAvMrsWajGobVVAcRiKLg",
+    "authDomain": "softwaretestingproj.firebaseapp.com",
+    "databaseURL": "https://softwaretestingproj-default-rtdb.firebaseio.com/",
+    "storageBucket": "softwaretestingproj.appspot.com"
+    }
+    firebase2= Firebase(config2)
+    db2 = firebase2.database()
+    try:
+        fakeData = db2.child('data').get()
+    except requests.ConnectionError:
+        assert False
+    print("Fake integration test to check proper connection to a fake Firebase database")
+    assert True
