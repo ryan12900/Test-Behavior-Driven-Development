@@ -1,3 +1,5 @@
+# Test-Behavior-Driven-Development
+
 # Professional Practice Assignment 1 - Test/Behavior Driven Development 
 
 Group: Ryan Ahmed, Joshua Aird, Brock Major, Dillon McGovern, Diana Osorio
@@ -21,12 +23,20 @@ Once a user has a registered API key that was returned as a response when they g
 
 **Local Execution with Dockerfile**
 
-To deploy the app locally, go the \Test-Behavior-Driven-Development folder and run "docker build -t ppa2/docker-release .", then run "docker run -d -p 8080:5000 ppa2/docker-release". To run the tests, navigate  to the same \Test-Behavior-Driven-Development\sandbox folder and run the command "pytest flask_pytest.py -v -s -vv".
+To deploy the app locally, go the \Test-Behavior-Driven-Development folder and run "docker build -t ppa2/docker-release .", then run "docker run -d -p 5000:5000 ppa2/docker-release" and navigate to localhost:5000 on your browser. 
+
+**Running Tests**
+To run the tests, navigate  to the same \Test-Behavior-Driven-Development\sandbox folder and run the command "pytest flask_pytest.py -v -s -vv".
 
 If the Docker server is not running properly on the host, install all the required dependencies by running "pip install -r requirements.txt" in the \Test-Behavior-Driven-Development\sandbox folder, then run the command "flask run".
 
+
+
 # All Test Suites Passing
 ![image](https://user-images.githubusercontent.com/44078719/142134691-98a263c1-b93b-4d96-9ca9-c54f1f6f9d3f.png)
+
+# Additional Integration Tests
+![image](https://user-images.githubusercontent.com/44078719/142354009-03b6f84b-c8bc-42f8-9762-2a9b3096a188.png)
 
 
 # Naming and Organizational Details
