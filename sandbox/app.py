@@ -86,7 +86,7 @@ def cc_payoff():
 
     id = uuid.uuid4()
     eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
-    data = request.get_json();
+    data = request.get_json()
     data.update({'timestamp': eventid})
     db.child('requests').child(id).set(data)
 
@@ -99,7 +99,7 @@ def cc_payoff():
     json_result = BankFunctions.cc_payoff(cc_balance, cc_interest_rate, months)
 
 
-    res = json.loads(json_result);
+    res = json.loads(json_result)
     res.update({'timestamp': eventid})
     db.child('response').child(id).set(res)
     return json.dumps(json_result)
@@ -114,7 +114,7 @@ def simple_savings_calc():
 
     id = uuid.uuid4()
     eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
-    data = request.get_json();
+    data = request.get_json()
     data.update({'timestamp': eventid})
     db.child('requests').child(id).set(data)
 
@@ -127,7 +127,7 @@ def simple_savings_calc():
     interest_rate = d['Interest Rate']
     json_result = BankFunctions.simple_savings_calc(initial_deposit, monthly_contrib, time_period, interest_rate)
 
-    res = json.loads(json_result);
+    res = json.loads(json_result)
     res.update({'timestamp': eventid})
     db.child('response').child(id).set(res)
     return json.dumps(json_result)
@@ -142,7 +142,7 @@ def cc_min_payment_calc():
 
     id = uuid.uuid4()
     eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
-    data = request.get_json();
+    data = request.get_json()
     data.update({'timestamp': eventid})
     db.child('requests').child(id).set(data)
     #d = simplejson.loads(request.POST.get('data'))
@@ -153,7 +153,7 @@ def cc_min_payment_calc():
     min_payment_percent = d['Minimum Payment Percent']
     json_result = BankFunctions.cc_min_payment_calc(cc_balance, cc_interest_rate, min_payment_percent)
 
-    res = json.loads(json_result);
+    res = json.loads(json_result)
     res.update({'timestamp': eventid})
     db.child('response').child(id).set(res)
     return json.dumps(json_result)
@@ -169,7 +169,7 @@ def mortgage_calc():
 
     id = uuid.uuid4()
     eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
-    data = request.get_json();
+    data = request.get_json()
     data.update({'timestamp': eventid})
     db.child('requests').child(id).set(data)
     #d = simplejson.loads(request.POST.get('data'))
@@ -181,7 +181,7 @@ def mortgage_calc():
     interest_rate = d['Interest Rate']
     json_result = BankFunctions.mortgage_calc(home_price, down_payment, loan_length, interest_rate)
 
-    res = json.loads(json_result);
+    res = json.loads(json_result)
     res.update({'timestamp': eventid})
     db.child('response').child(id).set(res)
     return json.dumps(json_result)
@@ -197,7 +197,7 @@ def cdCalc():
 
     id = uuid.uuid4()
     eventid = datetime.datetime.now().strftime('%Y%m-%d%H-%M%S')
-    data = request.get_json();
+    data = request.get_json()
     data.update({'timestamp': eventid})
     db.child('requests').child(id).set(data)
     #d = simplejson.loads(request.POST.get('data'))
@@ -208,11 +208,14 @@ def cdCalc():
     interest_Rate = d['Interest Rate']
     json_result = BankFunctions.cdCalc(init_Deposit, year_Period, interest_Rate)
 
-    res = json.loads(json_result);
+    res = json.loads(json_result)
     res.update({'timestamp': eventid})
     db.child('response').child(id).set(res)
     return json.dumps(json_result)
-    
+
+
+if __name__ == '__main__':
+  app.run(host='0.0.0.0',port=5000, debug=True)   
 # @app.route('/')
 # def index():
 #   return 'Index Page'
@@ -245,5 +248,3 @@ def cdCalc():
 #     serve_login_page() 
 
 
-if __name__ == '__main__':
-   app.run(host='0.0.0.0',port=8080)
